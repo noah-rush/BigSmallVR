@@ -7,6 +7,11 @@ public class PlayerSizingContinuous : MonoBehaviour
     [SerializeField]
     public GameObject m_PlayerController;
 
+    [SerializeField]
+    public Vector3 maxPlayerSize;
+    [SerializeField]
+    public Vector3 minPlayerSize;
+
     public float playerSizeIncrement;
 
     // Start is called before the first frame update
@@ -21,12 +26,18 @@ public class PlayerSizingContinuous : MonoBehaviour
         // If the joystick is going up, increase player size
         if(Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") > 0)
         {
-            gameObject.transform.localScale += playerSizeIncrement * Vector3.one;
+            if(gameObject.transform.localScale.y < maxPlayerSize.y)
+            {
+                gameObject.transform.localScale += playerSizeIncrement * Vector3.one;
+            }
         }
         // If the joystick is going down, decrease player size
         else if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") < 0)
         {
-            gameObject.transform.localScale -= playerSizeIncrement * Vector3.one;
+            if (gameObject.transform.localScale.y > minPlayerSize.y)
+            {
+                gameObject.transform.localScale -= playerSizeIncrement * Vector3.one;
+            }
         }
 
         //gameObject.transform.position = gameObject.transform.position - m_PlayerController.transform.position;
