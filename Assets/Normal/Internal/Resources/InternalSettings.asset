@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20553fac56ec59645857c0732b787431, type: 3}
-  m_Name: OVRBuildConfig
+  m_Script: {fileID: 1251306160, guid: 5173c3ea7f8dbdc47871e62b3e5c7906, type: 3}
+  m_Name: InternalSettings
   m_EditorClassIdentifier: 
-  androidSDKPath: 
-  gradlePath: 
-  jdkPath: 
+  _migration:
+    lastPromptedVersion: 2
+    version: 2
+  _projectGUID: 4fa3955f-9edb-4b97-9562-87b277f6be41

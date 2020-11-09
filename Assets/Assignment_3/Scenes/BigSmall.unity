@@ -1103,8 +1103,8 @@ MonoBehaviour:
   EnableRotationDuringPostTeleport: 1
   TeleportDestinationPrefab: {fileID: 6415665966013377941}
   TeleportDestinationLayer: 4
-  AimCollisionType: 0
-  UseCharacterCollisionData: 0
+  AimCollisionType: 2
+  UseCharacterCollisionData: 1
   AimCollisionRadius: 0.1
   AimCollisionHeight: 2
 --- !u!114 &319270692
@@ -2867,7 +2867,7 @@ Transform:
   m_GameObject: {fileID: 1839422925}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children:
   - {fileID: 37988645}
   - {fileID: 319270676}

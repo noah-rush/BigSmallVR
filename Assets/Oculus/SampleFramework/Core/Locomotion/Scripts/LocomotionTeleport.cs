@@ -440,17 +440,17 @@ public class LocomotionTeleport : MonoBehaviour
 		LogState("ReadyState: Start");
 
 
-		OVRGrabbable leftHandObj = leftHand.grabbedObject;
-		OVRGrabbable rightHandObj = rightHand.grabbedObject;
-		GameObject QuillonUI = GameObject.Find("QuillonUI");
-		if(leftHandObj != null){
-			SetLayerRecursively(leftHandObj.grabbedRigidbody.gameObject, 8);
+		// OVRGrabbable leftHandObj = leftHand.grabbedObject;
+		// OVRGrabbable rightHandObj = rightHand.grabbedObject;
+		// GameObject QuillonUI = GameObject.Find("QuillonUI");
+		// if(leftHandObj != null){
+		// 	SetLayerRecursively(leftHandObj.grabbedRigidbody.gameObject, 8);
 			
-		}
-		if(rightHandObj != null){
-			SetLayerRecursively(rightHandObj.grabbedRigidbody.gameObject, 8);
+		// }
+		// if(rightHandObj != null){
+		// 	SetLayerRecursively(rightHandObj.grabbedRigidbody.gameObject, 8);
 
-		}
+		// }
 		// yield once so that all the components will have time to process their OnEnable message before this 
 		// does work that relies on the events being hooked up.
 		yield return null;
@@ -547,25 +547,25 @@ public class LocomotionTeleport : MonoBehaviour
 	/// <returns></returns>
 	protected IEnumerator AimStateCoroutine()
 	{
-		// Physics.IgnoreLayerCollision(8, 8, true);
-		OVRGrabbable leftHandObj = leftHand.grabbedObject;
-		OVRGrabbable rightHandObj = rightHand.grabbedObject;
-		GameObject QuillonUI = GameObject.Find("QuillonUI");
+		// // Physics.IgnoreLayerCollision(8, 8, true);
+		// OVRGrabbable leftHandObj = leftHand.grabbedObject;
+		// OVRGrabbable rightHandObj = rightHand.grabbedObject;
+		// GameObject QuillonUI = GameObject.Find("QuillonUI");
 
 
-		if(leftHandObj != null){
-			leftHandObj.grabbedRigidbody.gameObject.layer = 9;
-			SetLayerRecursively(leftHandObj.grabbedRigidbody.gameObject, 9);
+		// if(leftHandObj != null){
+		// 	leftHandObj.grabbedRigidbody.gameObject.layer = 9;
+		// 	SetLayerRecursively(leftHandObj.grabbedRigidbody.gameObject, 9);
 
-		}
-		if(rightHandObj != null){
-			QuillonUI.transform.GetChild(0).GetComponent<TMP_Text>().text = rightHandObj.grabbedRigidbody.gameObject.name + rightHandObj.grabbedRigidbody.gameObject.layer;
-			// QuillonUI.transform.GetChild(0).GetComponent<TextMeshPro>().text = rightHandObj.name;
-			SetLayerRecursively(rightHandObj.grabbedRigidbody.gameObject, 9);
-			// rightHandObj.grabbedRigidbody.gameObject.layer = 9;
-			// QuillonUI.transform.GetChild(0).GetComponent<TextMeshPro>().text = rightHandObj.gameObject.layer;
+		// }
+		// if(rightHandObj != null){
+		// 	QuillonUI.transform.GetChild(0).GetComponent<TMP_Text>().text = rightHandObj.grabbedRigidbody.gameObject.name + rightHandObj.grabbedRigidbody.gameObject.layer;
+		// 	// QuillonUI.transform.GetChild(0).GetComponent<TextMeshPro>().text = rightHandObj.name;
+		// 	SetLayerRecursively(rightHandObj.grabbedRigidbody.gameObject, 9);
+		// 	// rightHandObj.grabbedRigidbody.gameObject.layer = 9;
+		// 	// QuillonUI.transform.GetChild(0).GetComponent<TextMeshPro>().text = rightHandObj.gameObject.layer;
 
-		}
+		// }
 
 		// rightHandObj.grabbedRigidbody.gameObject.layer = 9;
 		// leftHandObj.grabbedRigidbody.gameObject.layer = 9;
