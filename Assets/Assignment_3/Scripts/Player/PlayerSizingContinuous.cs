@@ -15,17 +15,23 @@ public class PlayerSizingContinuous : MonoBehaviour
     [SerializeField]
     public GameObject m_OVRCameraRig;
 
-    [SerializeField]
-    public Vector3 maxPlayerSize;
-    [SerializeField]
-    public Vector3 minPlayerSize;
+    public float playerSizeIncrement = 0.15f;
 
-    public float playerSizeIncrement;
+    public float scaleFactor = 1f;
+
+    public float minPlayerScale = 0.5f;
+
+    public float maxPlayerScale = 25f;
+
+    private Vector3 playerInitialScale;
 
     // Start is called before the first frame update
     void Start()
     {
+        // track the floor
         XRDevice.SetTrackingSpaceType(UnityEngine.XR.TrackingSpaceType.RoomScale);
+
+        playerInitialScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -40,20 +46,13 @@ public class PlayerSizingContinuous : MonoBehaviour
         m_OVRCameraRig.transform.parent = m_PlayerController.transform;
         
         /* Handle player resizing */
-        // If the joystick is going up, increase player size
-        if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") > 0)
+        if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") != 0)
         {
-            if(gameObject.transform.localScale.y < maxPlayerSize.y)
+            float newScaleFactor = scaleFactor + Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") * playerSizeIncrement;
+            if(newScaleFactor > minPlayerScale && newScaleFactor < maxPlayerScale)
             {
-                gameObject.transform.localScale += playerSizeIncrement * Vector3.one;
-            }
-        }
-        // If the joystick is going down, decrease player size
-        else if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") < 0)
-        {
-            if (gameObject.transform.localScale.y > minPlayerSize.y)
-            {
-                gameObject.transform.localScale -= playerSizeIncrement * Vector3.one;
+                scaleFactor = newScaleFactor;
+                transform.localScale = playerInitialScale * scaleFactor;
             }
         }
     }
