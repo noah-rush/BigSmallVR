@@ -15,27 +15,25 @@ public class PlayerSizingContinuous : MonoBehaviour
     [SerializeField]
     public GameObject m_OVRCameraRig;
 
-    public float playerSizeIncrement = 0.15f;
 
-    public float scaleFactor = 1f;
 
-    public float minPlayerScale = 0.5f;
+    public GameObject debugger;
 
-    public float maxPlayerScale = 25f;
+    [SerializeField]
+    float scaleRateLimit = 0.1f;
+    float scaleFactor = 1f;
+    float minPlayerScale = 0.1f;
+    float maxPlayerScale = 10f;
+    Vector3 playerInitialScale;
 
-    private Vector3 playerInitialScale;
 
-    // Start is called before the first frame update
     void Start()
     {
         // track the floor
         XRDevice.SetTrackingSpaceType(UnityEngine.XR.TrackingSpaceType.RoomScale);
-
         playerInitialScale = transform.localScale;
     }
-
-    // Update is called once per frame
-    void Update()
+    void ReadjustHeadCamera()
     {
         /* Reposition the player objects to be where the head is */
         // detach child
@@ -44,16 +42,56 @@ public class PlayerSizingContinuous : MonoBehaviour
         transform.position = new Vector3(m_CenterEyeAnchor.transform.position.x, transform.position.y, m_CenterEyeAnchor.transform.position.z);
         // reattach child
         m_OVRCameraRig.transform.parent = m_PlayerController.transform;
-        
+    }
+    bool IsPlayerScaling()
+    {
+        return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") != 0;
+    }
+    // [-1, 1] * rate limit
+    float GetNewScale()
+    {
+        return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") * scaleRateLimit;
+    }
+    public float GetScaleRateLimit()
+    {
+        return scaleRateLimit;
+    }
+    public float GetMinScale()
+    {
+        return minPlayerScale;
+    }
+    public float GetMaxScale()
+    {
+        return maxPlayerScale;
+    }
+    // Update is called once per frame
+    void ResizePlayer()
+    {
         /* Handle player resizing */
-        if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") != 0)
+        if (IsPlayerScaling())
         {
-            float newScaleFactor = scaleFactor + Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") * playerSizeIncrement;
+            float newScaleFactor = scaleFactor + GetNewScale();
             if(newScaleFactor > minPlayerScale && newScaleFactor < maxPlayerScale)
             {
-                scaleFactor = newScaleFactor;
-                transform.localScale = playerInitialScale * scaleFactor;
+                int layerMask = 1 << 9;
+                layerMask = ~layerMask;
+                RaycastHit hit;
+                if(GetNewScale() <0 || !Physics.Raycast(m_OVRCameraRig.transform.position, Vector3.up, out hit, 0.04f, layerMask))
+                {
+                    scaleFactor = newScaleFactor;
+                    transform.localScale = playerInitialScale * scaleFactor;
+                    transform.position += GetNewScale() / 2.0F * Vector3.up;
+                }
+
             }
         }
+    }
+
+    void Update()
+    {
+        ReadjustHeadCamera();
+        ResizePlayer();
+
+
     }
 }
