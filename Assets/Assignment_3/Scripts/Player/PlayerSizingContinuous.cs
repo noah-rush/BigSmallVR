@@ -76,7 +76,8 @@ public class PlayerSizingContinuous : MonoBehaviour
                 int layerMask = 1 << 9;
                 layerMask = ~layerMask;
                 RaycastHit hit;
-                if(GetNewScale() <0 || !Physics.Raycast(m_OVRCameraRig.transform.position, Vector3.up, out hit, 0.04f, layerMask))
+                Vector3 raycastStart = new Vector3(transform.position.x, gameObject.GetComponent<Collider>().bounds.max.y, transform.position.z);
+                if (GetNewScale() < 0 || !Physics.Raycast(raycastStart, Vector3.up, out hit, GetNewScale() + GetNewScale() / 2.0f, layerMask))
                 {
                     scaleFactor = newScaleFactor;
                     transform.localScale = playerInitialScale * scaleFactor;
