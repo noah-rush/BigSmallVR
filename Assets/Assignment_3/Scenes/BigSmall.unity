@@ -2785,7 +2785,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 90
   orthographic: 0
@@ -2849,8 +2849,6 @@ MonoBehaviour:
   m_PlayerController: {fileID: 1839422925}
   m_CenterEyeAnchor: {fileID: 1792447040}
   m_OVRCameraRig: {fileID: 37988642}
-  maxPlayerSize: {x: 25, y: 25, z: 25}
-  minPlayerSize: {x: 0.2, y: 0.2, z: 0.2}
   debugger: {fileID: 773703416}
   scaleRateLimit: 0.2
 --- !u!136 &1839422927
