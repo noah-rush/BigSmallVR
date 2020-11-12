@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 1488926636, guid: 30f4fd177e1fad742be136a8237ab587, type: 3}
   m_Name: NormcoreAppSettings
   m_EditorClassIdentifier: 
-  _normcoreAppKey: 
+  _normcoreAppKey: 9a524067-4a4a-4472-ba17-9c7eff2a6970
   _matcherURL: wss://normcore-matcher.normcore.io:3000

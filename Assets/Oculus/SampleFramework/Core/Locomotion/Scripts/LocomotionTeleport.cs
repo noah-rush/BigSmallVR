@@ -190,7 +190,7 @@ public class LocomotionTeleport : MonoBehaviour
 		PreTeleport,    // The user has selected a location to teleport, and the input handler will now control how long it stays in PreTeleport.
 		Teleport        // The user has chosen to teleport. If the destination is valid, the state will transition to Teleporting, otherwise it will switch to CancelTeleport.
 	}
-
+	public GameObject debugger;
 	/// <summary>
 	/// The CurrentIntention is used by the state machine to know when it is time to switch to a new state.
 	/// </summary>
@@ -306,17 +306,22 @@ public class LocomotionTeleport : MonoBehaviour
 				float r, h;
 				if (UseCharacterCollisionData)
 				{
+
 					var c = LocomotionController.CharacterController;
-					h = c.height;
-					r = c.radius;
+					GameObject player = c.gameObject;
+					// debugger.GetComponent<UnityEngine.UI.Text>().text = "start height:" + (start.y).ToString();
+					h = c.height * player.transform.localScale.y;
+					r = c.radius * player.transform.localScale.y/4.0f;
+					_teleportDestination.gameObject.transform.localScale =  Vector3.one * h;
+					// _teleportDestination.transform.localScale = Vector3.up* h + Vector3.right*r + Vector3.forward*r;
 				}
 				else
 				{
 					h = AimCollisionHeight;
 					r = AimCollisionRadius;
 				}
-				return Physics.CapsuleCast(start + new Vector3(0, r, 0),
-					start + new Vector3(0, h + r, 0), r, direction,
+				return Physics.CapsuleCast(start + new Vector3(0, 0, 0),
+					start + new Vector3(0, h, 0), r, direction,
 					out hitInfo, distance, aimCollisionLayerMask, QueryTriggerInteraction.Ignore);
 			}
 
@@ -369,6 +374,16 @@ public class LocomotionTeleport : MonoBehaviour
 		td.gameObject.layer = TeleportDestinationLayer;
 		_teleportDestination = td;
 		_teleportDestination.LocomotionTeleport = this;
+		// var c = LocomotionController.CharacterController;
+		// GameObject player = c.gameObject;
+		// debugger.GetComponent<UnityEngine.UI.Text>().text = "height:" + (c.height * player.transform.localScale.y).ToString();
+		// float h = c.height * player.transform.localScale.y;
+		// float r = c.radius * player.transform.localScale.y/4.0f;
+		// debugger.GetComponent<UnityEngine.UI.Text>().text = "height:" + _teleportDestination.gameObject.transform.localScale.y.ToString();
+
+		// _teleportDestination.gameObject.transform.localScale =  Vector3.one * h;
+
+
 	}
 
 	/// <summary>
@@ -832,7 +847,16 @@ public class LocomotionTeleport : MonoBehaviour
 		var destTransform = _teleportDestination.OrientationIndicator;
 
 		Vector3 destPosition = destTransform.position;
-		destPosition.y += character.height * 0.5f;
+				debugger.GetComponent<UnityEngine.UI.Text>().text = "position y:" + destPosition.y;
+
+		if(destPosition.y > 0.4f){
+		destPosition.y += characterTransform.localScale.y  * 0.5f;
+
+		}else{
+		destPosition.y = characterTransform.localScale.y  * 0.5f;
+
+		}
+
 		Quaternion destRotation = _teleportDestination.LandingRotation;// destTransform.rotation;
 #if false
 		Quaternion destRotation = destTransform.rotation;
@@ -848,6 +872,7 @@ public class LocomotionTeleport : MonoBehaviour
 
 		characterTransform.position = destPosition;
 		characterTransform.rotation = destRotation;
+		// debugger.GetComponent<UnityEngine.UI.Text>().text = characterTransform.position.y.ToString();
 
 	}
 
@@ -904,7 +929,10 @@ public class LocomotionTeleport : MonoBehaviour
 	{
 		var destTransform = _teleportDestination.OrientationIndicator;
 		Vector3 destPosition = destTransform.position;
+		// debugger.GetComponent<UnityEngine.UI.Text>().text = "position y:" + destPosition.y;
+
 		destPosition.y += LocomotionController.CharacterController.height/2.0f;
+		// debugger.GetComponent<UnityEngine.UI.Text>().text = "height:" + (Math.Round(c.height * 100f) / 100f).ToString() +"\nradius:" + (Math.Round(c.radius * 100f) / 100f).ToString().ToString();
 
 		var character = LocomotionController.CharacterController;
 		var characterTransform = character.transform;

@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Assignment_3/Scenes/JediMakerLab.unity
-    guid: bdcc1c6b723cb46f6a4ab5242f8823b3
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Oculus/SampleFramework/Usage/Locomotion.unity
     guid: 024cd9dcd49bd8f46a6bea03aa8a21bb

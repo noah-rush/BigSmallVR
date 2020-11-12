@@ -20,16 +20,21 @@ public class PlayerSizingContinuous : MonoBehaviour
     [SerializeField]
     public Vector3 minPlayerSize;
 
-    public float playerSizeIncrement;
+    public GameObject debugger;
 
-    // Start is called before the first frame update
+    [SerializeField]
+    float scaleRateLimit = 0.1f;
+    float scaleFactor = 1f;
+    float minPlayerScale = 0.1f;
+    float maxPlayerScale = 10f;
+    Vector3 playerInitialScale;
+
     void Start()
     {
         XRDevice.SetTrackingSpaceType(UnityEngine.XR.TrackingSpaceType.RoomScale);
+        playerInitialScale = transform.localScale;
     }
-
-    // Update is called once per frame
-    void Update()
+    void ReadjustHeadCamera()
     {
         /* Reposition the player objects to be where the head is */
         // detach child
@@ -38,23 +43,55 @@ public class PlayerSizingContinuous : MonoBehaviour
         transform.position = new Vector3(m_CenterEyeAnchor.transform.position.x, transform.position.y, m_CenterEyeAnchor.transform.position.z);
         // reattach child
         m_OVRCameraRig.transform.parent = m_PlayerController.transform;
-        
+    }
+    bool IsPlayerScaling()
+    {
+        return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") != 0;
+    }
+    // [-1, 1] * rate limit
+    float GetNewScale()
+    {
+        return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") * scaleRateLimit;
+    }
+    public float GetScaleRateLimit()
+    {
+        return scaleRateLimit;
+    }
+    public float GetMinScale()
+    {
+        return minPlayerScale;
+    }
+    public float GetMaxScale()
+    {
+        return maxPlayerScale;
+    }
+    // Update is called once per frame
+    void ResizePlayer()
+    {
         /* Handle player resizing */
-        // If the joystick is going up, increase player size
-        if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") > 0)
+        if (IsPlayerScaling())
         {
-            if(gameObject.transform.localScale.y < maxPlayerSize.y)
+            float newScaleFactor = scaleFactor + GetNewScale();
+            if(newScaleFactor > minPlayerScale && newScaleFactor < maxPlayerScale)
             {
-                gameObject.transform.localScale += playerSizeIncrement * Vector3.one;
+                int layerMask = 1 << 9;
+                layerMask = ~layerMask;
+                RaycastHit hit;
+                if(GetNewScale() <0 || !Physics.Raycast(m_OVRCameraRig.transform.position, Vector3.up, out hit, 0.04f, layerMask))
+                {
+                    scaleFactor = newScaleFactor;
+                    transform.localScale = playerInitialScale * scaleFactor;
+                    transform.position += GetNewScale() / 2.0F * Vector3.up;
+                }
             }
         }
-        // If the joystick is going down, decrease player size
-        else if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") < 0)
-        {
-            if (gameObject.transform.localScale.y > minPlayerSize.y)
-            {
-                gameObject.transform.localScale -= playerSizeIncrement * Vector3.one;
-            }
-        }
+    }
+
+    void Update()
+    {
+        ReadjustHeadCamera();
+        ResizePlayer();
+
+
     }
 }

@@ -94,7 +94,7 @@ public class CharacterCameraConstraint : MonoBehaviour
 		// If dynamic height is enabled, try to adjust the controller height to the height of the camera.
 		if (PreferredHeight > 0.0f)
 		{
-            float camHeight = Mathf.Min(CameraRig.centerEyeAnchor.transform.localPosition.y, PreferredHeight);
+            float camHeight = CameraRig.centerEyeAnchor.transform.localPosition.y;
 			float newHeight = camHeight;
 			
 			// If the new height is less than before, or we don't need to check for collision, just accept the new height.
