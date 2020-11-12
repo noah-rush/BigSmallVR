@@ -15,10 +15,7 @@ public class PlayerSizingContinuous : MonoBehaviour
     [SerializeField]
     public GameObject m_OVRCameraRig;
 
-    [SerializeField]
-    public Vector3 maxPlayerSize;
-    [SerializeField]
-    public Vector3 minPlayerSize;
+
 
     public GameObject debugger;
 
@@ -29,8 +26,10 @@ public class PlayerSizingContinuous : MonoBehaviour
     float maxPlayerScale = 10f;
     Vector3 playerInitialScale;
 
+
     void Start()
     {
+        // track the floor
         XRDevice.SetTrackingSpaceType(UnityEngine.XR.TrackingSpaceType.RoomScale);
         playerInitialScale = transform.localScale;
     }
@@ -83,6 +82,7 @@ public class PlayerSizingContinuous : MonoBehaviour
                     transform.localScale = playerInitialScale * scaleFactor;
                     transform.position += GetNewScale() / 2.0F * Vector3.up;
                 }
+
             }
         }
     }
