@@ -22,7 +22,7 @@ public class PlayerSizingContinuous : MonoBehaviour
     [SerializeField]
     float scaleRateLimit = 0.1f;
     public float scaleFactor = 1f; // Used in grabbable objects to check if they can be grabbed by player
-    float minPlayerScale = 0.1f;
+    float minPlayerScale = 0.25f;
     float maxPlayerScale = 10f;
     Vector3 playerInitialScale;
 
@@ -64,6 +64,10 @@ public class PlayerSizingContinuous : MonoBehaviour
     {
         return maxPlayerScale;
     }
+    public float GetScaleFactor()
+    {
+        return scaleFactor;
+    }
     // Update is called once per frame
     void ResizePlayer()
     {
@@ -77,11 +81,25 @@ public class PlayerSizingContinuous : MonoBehaviour
                 layerMask = ~layerMask;
                 RaycastHit hit;
                 Vector3 raycastStart = new Vector3(transform.position.x, gameObject.GetComponent<Collider>().bounds.max.y, transform.position.z);
-                if (GetNewScale() < 0 || !Physics.Raycast(raycastStart, Vector3.up, out hit, GetNewScale() + GetNewScale() / 2.0f, layerMask))
+                if (GetNewScale() < 0)
                 {
                     scaleFactor = newScaleFactor;
                     transform.localScale = playerInitialScale * scaleFactor;
                     transform.position += GetNewScale() / 2.0F * Vector3.up;
+
+                }
+                else
+                {
+                    if(!Physics.Raycast(raycastStart, Vector3.up, out hit, GetNewScale() + GetNewScale() / 2.0f, layerMask))
+                    {
+                        scaleFactor = newScaleFactor;
+                        transform.localScale = playerInitialScale * scaleFactor;
+                        transform.position += GetNewScale() / 2.0F * Vector3.up;
+                    }
+                    else
+                    {
+                        OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
+                    }
                 }
 
             }
@@ -90,6 +108,8 @@ public class PlayerSizingContinuous : MonoBehaviour
 
     void Update()
     {
+        // Clear Haptics
+        OVRInput.SetControllerVibration(1, 0, OVRInput.Controller.RTouch);
         ReadjustHeadCamera();
         ResizePlayer();
 

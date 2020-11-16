@@ -1619,7 +1619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &773703417
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2851,6 +2851,7 @@ MonoBehaviour:
   m_OVRCameraRig: {fileID: 37988642}
   debugger: {fileID: 773703416}
   scaleRateLimit: 0.2
+  scaleFactor: 1
 --- !u!136 &1839422927
 CapsuleCollider:
   m_ObjectHideFlags: 0

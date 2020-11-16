@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrabableSizing : MonoBehaviour
 {
-    
+
     PlayerSizingContinuous player;
 
     OVRGrabbable grabbable;
@@ -13,9 +13,10 @@ public class GrabableSizing : MonoBehaviour
 
     // Default values if values not defined by player
     float maxScale = 3f;
-    float minScale = .1f;
+    float minScale = .25f;
     float scaleRateLimit = .1f;
 
+    float playerScale;
 
     Vector3 originalLocalScale;
 
@@ -56,17 +57,29 @@ public class GrabableSizing : MonoBehaviour
         // object is not being grabbed, nothing to do
         if (!grabbable.isGrabbed) return;
 
-        if (IsPlayerScaling()){
+        if (IsPlayerScaling())
+        {
             float newScale = GetnewScale() + scaleFactor;
-            if (newScale > minScale && newScale < maxScale){
-                scaleFactor = newScale;
-                transform.localScale = originalLocalScale * scaleFactor;
+            float playerNewScale = GetnewScale() + player.GetScaleFactor();
+            if(playerNewScale > minScale && playerNewScale < maxScale)
+            {
+                if (newScale > minScale && newScale < maxScale)
+                {
+                    scaleFactor = newScale;
+                    transform.localScale = originalLocalScale * scaleFactor;
+                }
             }
         }
     }
 
-    bool IsPlayerScaling() { return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") != 0; }
+    bool IsPlayerScaling()
+    {
+        return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") != 0;
+    }
 
     // [-1, 1] * rate limit
-    float GetnewScale() { return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") * scaleRateLimit; }
+    float GetnewScale()
+    {
+        return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") * scaleRateLimit;
+    }
 }
