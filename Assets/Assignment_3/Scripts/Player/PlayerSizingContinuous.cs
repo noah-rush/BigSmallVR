@@ -21,7 +21,7 @@ public class PlayerSizingContinuous : MonoBehaviour
 
     [SerializeField]
     float scaleRateLimit = 0.1f;
-    float scaleFactor = 1f;
+    public float scaleFactor = 1f; // Used in grabbable objects to check if they can be grabbed by player
     float minPlayerScale = 0.1f;
     float maxPlayerScale = 10f;
     Vector3 playerInitialScale;

@@ -36,7 +36,19 @@ public class GrabableSizing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* If the object is too heavy, drop it */
+        CompareGrabbedObjectWeight();
+        /* If the player is holding an object, scale it with the player */
         ScaleGrabbedObject();
+    }
+
+    void CompareGrabbedObjectWeight()
+    {
+        PlayerSizingContinuous grabbingPlayer = grabbable.grabbedBy.GetComponentInParent<PlayerSizingContinuous>();
+        if(grabbingPlayer.scaleFactor < scaleFactor)
+        {
+            grabbable.grabbedBy.ForceRelease(grabbable);
+        }
     }
 
     void ScaleGrabbedObject()
