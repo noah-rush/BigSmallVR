@@ -303,6 +303,10 @@ public class LocomotionTeleport : MonoBehaviour
 		{
 			case AimCollisionTypes.Capsule:
 			{
+				int otherLayers = ~aimCollisionLayerMask.value;
+				RaycastHit otherLayersHit;
+				bool hitOtherLayer = Physics.Raycast(start, direction, out otherLayersHit, distance, otherLayers, QueryTriggerInteraction.Ignore);
+
 				float r, h;
 				if (UseCharacterCollisionData)
 				{
@@ -320,10 +324,20 @@ public class LocomotionTeleport : MonoBehaviour
 					h = AimCollisionHeight;
 					r = AimCollisionRadius;
 				}
-				return Physics.CapsuleCast(start + new Vector3(0, 0, 0),
+
+				bool hitGroundLayer = Physics.CapsuleCast(start + new Vector3(0, 0, 0),
 					start + new Vector3(0, h, 0), r, direction,
 					out hitInfo, distance, aimCollisionLayerMask, QueryTriggerInteraction.Ignore);
-			}
+				
+				// You hit the ground and something else and the ground is further
+				if(hitGroundLayer && hitOtherLayer && hitInfo.distance > otherLayersHit.distance)
+                {
+					hitInfo = otherLayersHit;
+					return false;
+				}
+
+				return hitGroundLayer;
+				}
 
 			case AimCollisionTypes.Point:
 				return Physics.Raycast(start, direction, out hitInfo, distance, aimCollisionLayerMask,QueryTriggerInteraction.Ignore);
