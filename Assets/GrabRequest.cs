@@ -17,4 +17,8 @@ public class GrabRequest : MonoBehaviour
             _realtimeTransform.RequestOwnership();
         }
     }
+    public void request_ownership(){
+            _realtimeTransform.RequestOwnership();
+        
+    }
 }

@@ -22,11 +22,14 @@ public class HandScanner : MonoBehaviour
 
     PlayerSizingContinuous player;
     bool collided;
+    GrabRequest requester; 
     // Start is called before the first frame update
     void Start()
     {
         targetPosition = objectToMove.transform.position + toMove;
         player = GameObject.FindWithTag("Player").GetComponent<PlayerSizingContinuous>();
+        requester = objectToMove.GetComponent<GrabRequest>();
+
         moveObject = false;
         
     }
@@ -57,7 +60,7 @@ public class HandScanner : MonoBehaviour
             objectToMove.GetComponent<Rigidbody>().useGravity = false;
             objectToMove.GetComponent<Rigidbody>().isKinematic = true;
             objectToMove.GetComponent<Rigidbody>().detectCollisions = true;
-            
+            requester.request_ownership();
 
         }
     }
