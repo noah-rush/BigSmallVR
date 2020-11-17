@@ -9,14 +9,15 @@ public class GrabableSizing : MonoBehaviour
 
     OVRGrabbable grabbable;
 
+    [SerializeField]
+    float playerScaleRequired = 2f;
+
     float scaleFactor;
 
     // Default values if values not defined by player
     float maxScale = 3f;
     float minScale = .25f;
     float scaleRateLimit = .1f;
-
-    float playerScale;
 
     Vector3 originalLocalScale;
 
@@ -25,7 +26,7 @@ public class GrabableSizing : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerSizingContinuous>();
         originalLocalScale = transform.localScale;
-        scaleFactor = 1f;
+        scaleFactor = 2f;
         grabbable = gameObject.GetComponent<OVRGrabbable>();
 
         // Scaling behavior same as player's
@@ -45,8 +46,10 @@ public class GrabableSizing : MonoBehaviour
 
     void CompareGrabbedObjectWeight()
     {
+        // grabbingPlayer could come back null
         PlayerSizingContinuous grabbingPlayer = grabbable.grabbedBy.GetComponentInParent<PlayerSizingContinuous>();
-        if(grabbingPlayer.scaleFactor < scaleFactor)
+        if(grabbingPlayer == null) return;
+        if(grabbingPlayer.scaleFactor >= playerScaleRequired)
         {
             grabbable.grabbedBy.ForceRelease(grabbable);
         }
