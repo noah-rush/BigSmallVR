@@ -8,7 +8,7 @@ public class LockedObject : MonoBehaviour
     // Start is called before the first frame update
     OVRGrabbable grabbable;
     Quaternion defaultRotation;
-
+    PlayerSizingContinuous grabbingPlayer;
     void Start()
     {
         grabbable = gameObject.GetComponent<OVRGrabbable>();
@@ -22,19 +22,19 @@ public class LockedObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Transform grabbingHand = grabbable.grabbedBy.GetComponentInParent<Transform>();
         if(grabbable.isGrabbed)
         {
-            OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
-             gameObject.GetComponent<Renderer> ().material.color = Color.green;
-            // OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
+            grabbingPlayer = grabbable.grabbedBy.GetComponentInParent<PlayerSizingContinuous>();
+            grabbingPlayer.vibrateRightHand = true;
+            grabbingPlayer.vibratePower = transform.position.y - 0.9f;
+            gameObject.GetComponent<Renderer> ().material.color = Color.green;
         }
         else
         {
-             gameObject.GetComponent<Renderer> ().material.color = Color.red;
-
-            // OVRInput.SetControllerVibration(0, 0, OVRInput.Controller.RTouch);
-
+            gameObject.GetComponent<Renderer> ().material.color = Color.red;
+            grabbingPlayer.vibrateRightHand = false;
+ 
+ 
         }
 
     }

@@ -6,43 +6,64 @@ using TMPro;
 public class HandScanner : MonoBehaviour
 {
     [SerializeField]
-    GameObject wallParent, parent;
+    GameObject objectToMove;
+    [SerializeField]
+    Vector3 toMove;
+
+    Vector3 targetPosition;
 
     [SerializeField]
     TextMeshPro playerSizeText;
 
-    bool moveWalls;
+    bool moveObject;
 
     [SerializeField]
     float maxPlayerScale = 1f;
 
     PlayerSizingContinuous player;
-
+    bool collided;
     // Start is called before the first frame update
     void Start()
     {
+        targetPosition = objectToMove.transform.position + toMove;
         player = GameObject.FindWithTag("Player").GetComponent<PlayerSizingContinuous>();
-        moveWalls = false;
+        moveObject = false;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(moveWalls) 
+        if(moveObject)
         {
-            wallParent.transform.position = Vector3.Lerp(wallParent.transform.position, new Vector3(0,5,0), Time.deltaTime * .3f);
+            objectToMove.transform.position = Vector3.Lerp(objectToMove.transform.position, targetPosition, Time.deltaTime * .3f);
         }
 
-        playerSizeText.text = player.scaleFactor.ToString("F2") + moveWalls.ToString();
+        // playerSizeText.text = player.scaleFactor.ToString("F2") + moveWalls.ToString();
     }
 
-    void OnTriggerEnter(Collider collider)
+
+    IEnumerator OnTriggerEnter(Collider collider)
     {
-        if (player.scaleFactor <= maxPlayerScale) {
-            MeshRenderer[] meshRenderers = parent.GetComponentsInChildren<MeshRenderer>();
-            foreach(MeshRenderer mr in meshRenderers)
-                mr.enabled = false;
-            moveWalls = true;
+        if (player.scaleFactor <= maxPlayerScale && collider.gameObject.name == "GrabVolumeSmall")
+        {
+        collided = true;
         }
+        yield return new WaitForSeconds(2);
+        if (collided)
+        {
+            // something
+            moveObject = true;
+            objectToMove.GetComponent<Rigidbody>().useGravity = false;
+            objectToMove.GetComponent<Rigidbody>().isKinematic = true;
+            objectToMove.GetComponent<Rigidbody>().detectCollisions = true;
+            
+
+        }
+    }
+
+    void OnCollisionExit ()
+    {
+        collided = false;
     }
 }

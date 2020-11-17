@@ -25,6 +25,9 @@ public class PlayerSizingContinuous : MonoBehaviour
     float minPlayerScale = 0.25f;
     float maxPlayerScale = 10f;
     Vector3 playerInitialScale;
+    public bool vibrateRightHand = false;
+    public bool vibrateLeftHand = false;
+    public float vibratePower = 0.0f;
 
 
     void Start()
@@ -99,6 +102,8 @@ public class PlayerSizingContinuous : MonoBehaviour
                     else
                     {
                         OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
+                        // OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
+
                     }
                 }
 
@@ -112,7 +117,14 @@ public class PlayerSizingContinuous : MonoBehaviour
         OVRInput.SetControllerVibration(1, 0, OVRInput.Controller.RTouch);
         ReadjustHeadCamera();
         ResizePlayer();
+        if(vibrateRightHand){
+            OVRInput.SetControllerVibration(vibratePower, vibratePower, OVRInput.Controller.RTouch);
+        }
+        if(vibrateLeftHand){
+            OVRInput.SetControllerVibration(vibratePower, vibratePower, OVRInput.Controller.LTouch);
+        }
 
 
     }
+
 }
