@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AimCollisionLayerMask:
     serializedVersion: 2
-    m_Bits: 1025
+    m_Bits: 1024
 --- !u!114 &319270686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3037,7 +3037,7 @@ GameObject:
   - component: {fileID: 1671008548}
   - component: {fileID: 1671008547}
   - component: {fileID: 1671008546}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3313,7 +3313,7 @@ MonoBehaviour:
   EnableCollision: 1
   CollideLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   MaxFade: 0.5
   FadeMinDistance: 0.25
   PreferredHeight: 1
