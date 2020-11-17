@@ -16,8 +16,8 @@ public class GrabableSizing : MonoBehaviour
 
     // Default values if values not defined by player
     float maxScale = 3f;
-    float minScale = .25f;
-    float scaleRateLimit = .1f;
+    float minScale = .01f;
+    float scaleRateLimit = .05f;
 
     Vector3 originalLocalScale;
     [SerializeField]
