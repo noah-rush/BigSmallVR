@@ -260,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172315392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.062, y: 0.98, z: -0.137}
+  m_LocalPosition: {x: 5.062, y: 1, z: -0.137}
   m_LocalScale: {x: 3.5600138, y: 1.9624383, z: 2.104041}
   m_Children: []
   m_Father: {fileID: 2063916494}
@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AimCollisionLayerMask:
     serializedVersion: 2
-    m_Bits: 1281
+    m_Bits: 1024
 --- !u!114 &319270686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3333,6 +3333,9 @@ MonoBehaviour:
   debugger: {fileID: 773703416}
   scaleRateLimit: 0.2
   scaleFactor: 1
+  vibrateRightHand: 0
+  vibrateLeftHand: 0
+  vibratePower: 0
 --- !u!136 &1839422927
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3629,6 +3632,16 @@ PrefabInstance:
       propertyPath: wallParent
       value: 
       objectReference: {fileID: 1381588881}
+    - target: {fileID: 5465862300861044600, guid: 8ef51ac526c347040820ec12c1521b98,
+        type: 3}
+      propertyPath: objectToMove
+      value: 
+      objectReference: {fileID: 172315392}
+    - target: {fileID: 5465862300861044600, guid: 8ef51ac526c347040820ec12c1521b98,
+        type: 3}
+      propertyPath: toMove.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5465862300928952341, guid: 8ef51ac526c347040820ec12c1521b98,
         type: 3}
       propertyPath: m_Mesh
@@ -3642,7 +3655,7 @@ PrefabInstance:
     - target: {fileID: 5465862302327246598, guid: 8ef51ac526c347040820ec12c1521b98,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5465862302327246598, guid: 8ef51ac526c347040820ec12c1521b98,
         type: 3}
