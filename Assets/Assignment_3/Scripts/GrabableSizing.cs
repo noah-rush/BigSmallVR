@@ -20,13 +20,15 @@ public class GrabableSizing : MonoBehaviour
     float scaleRateLimit = .1f;
 
     Vector3 originalLocalScale;
+    [SerializeField]
+    bool resizable = true;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerSizingContinuous>();
         originalLocalScale = transform.localScale;
-        scaleFactor = 2f;
+        scaleFactor = 1f;
         grabbable = gameObject.GetComponent<OVRGrabbable>();
 
         // Scaling behavior same as player's
@@ -39,8 +41,10 @@ public class GrabableSizing : MonoBehaviour
     void Update()
     {
         /* If the object is too heavy, drop it */
+        if (!grabbable.isGrabbed) return;
         CompareGrabbedObjectWeight();
         /* If the player is holding an object, scale it with the player */
+        if (!resizable) return;
         ScaleGrabbedObject();
     }
 
@@ -48,8 +52,7 @@ public class GrabableSizing : MonoBehaviour
     {
         // grabbingPlayer could come back null
         PlayerSizingContinuous grabbingPlayer = grabbable.grabbedBy.GetComponentInParent<PlayerSizingContinuous>();
-        if(grabbingPlayer == null) return;
-        if(grabbingPlayer.scaleFactor >= playerScaleRequired)
+        if(grabbingPlayer.scaleFactor < playerScaleRequired)
         {
             grabbable.grabbedBy.ForceRelease(grabbable);
         }
@@ -58,7 +61,7 @@ public class GrabableSizing : MonoBehaviour
     void ScaleGrabbedObject()
     {
         // object is not being grabbed, nothing to do
-        if (!grabbable.isGrabbed) return;
+        // if (!grabbable.isGrabbed) return;
 
         if (IsPlayerScaling())
         {
