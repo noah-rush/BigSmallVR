@@ -48,21 +48,27 @@ public class HandScanner : MonoBehaviour
 
     IEnumerator OnTriggerEnter(Collider collider)
     {
-        if (player.scaleFactor <= maxPlayerScale && collider.gameObject.name == "GrabVolumeSmall")
+        if (player.scaleFactor <= maxPlayerScale && collider.gameObject.name == "CubeKey" && !collider.gameObject.GetComponent<OVRGrabbable>().isGrabbed)
         {
-        collided = true;
+            collided = true;
         }
         yield return new WaitForSeconds(2);
         if (collided)
         {
             // something
+            openDoor();
+           
+
+        }
+    }
+
+    void openDoor(){
+            requester.request_ownership();
             moveObject = true;
             objectToMove.GetComponent<Rigidbody>().useGravity = false;
             objectToMove.GetComponent<Rigidbody>().isKinematic = true;
             objectToMove.GetComponent<Rigidbody>().detectCollisions = true;
-            requester.request_ownership();
-
-        }
+            objectToMove.GetComponent<OVRGrabbable>().enabled = false;
     }
 
     void OnCollisionExit ()
