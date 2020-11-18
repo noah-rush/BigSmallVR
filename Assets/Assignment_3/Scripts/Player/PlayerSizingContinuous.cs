@@ -117,10 +117,10 @@ public class PlayerSizingContinuous : MonoBehaviour
         ReadjustHeadCamera();
         ResizePlayer();
         if(vibrateRightHand){
-            OVRInput.SetControllerVibration(vibratePower, vibratePower, OVRInput.Controller.RTouch);
+            OVRInput.SetControllerVibration(vibratePower/2.0f, 1, OVRInput.Controller.RTouch);
         }
         if(vibrateLeftHand){
-            OVRInput.SetControllerVibration(vibratePower, vibratePower, OVRInput.Controller.LTouch);
+            OVRInput.SetControllerVibration(vibratePower/2.0f, 1, OVRInput.Controller.LTouch);
         }
 
 
