@@ -19,6 +19,10 @@ public class GrabableSizing : MonoBehaviour
     float minScale = .01f;
     float scaleRateLimit = .05f;
 
+    float playerMinScale;
+    float playerMaxScale;
+
+
     Vector3 originalLocalScale;
     [SerializeField]
     bool resizable = true;
@@ -32,8 +36,8 @@ public class GrabableSizing : MonoBehaviour
         grabbable = gameObject.GetComponent<OVRGrabbable>();
 
         // Scaling behavior same as player's
-        maxScale = player.GetMaxScale();
-        minScale = player.GetMinScale();
+        playerMaxScale = player.GetMaxScale();
+        playerMinScale = player.GetMinScale();
         scaleRateLimit = player.GetScaleRateLimit();
     }
 
@@ -67,7 +71,7 @@ public class GrabableSizing : MonoBehaviour
         {
             float newScale = GetnewScale() + scaleFactor;
             float playerNewScale = GetnewScale() + player.GetScaleFactor();
-            if(playerNewScale > minScale && playerNewScale < maxScale)
+            if(playerNewScale > playerMinScale && playerNewScale < playerMaxScale)
             {
                 if (newScale > minScale && newScale < maxScale)
                 {

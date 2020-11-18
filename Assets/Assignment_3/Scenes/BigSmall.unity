@@ -3457,7 +3457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823b43eec574eef4494a3965545e0420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScaleRequired: 0.5
+  playerScaleRequired: 0
   resizable: 1
 --- !u!114 &1900704835
 MonoBehaviour:
@@ -3840,6 +3840,11 @@ PrefabInstance:
         type: 3}
       propertyPath: toMove.y
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465862300861044601, guid: 8ef51ac526c347040820ec12c1521b98,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5465862300928952341, guid: 8ef51ac526c347040820ec12c1521b98,
         type: 3}

@@ -48,7 +48,7 @@ public class HandScanner : MonoBehaviour
 
     IEnumerator OnTriggerEnter(Collider collider)
     {
-        if (player.scaleFactor <= maxPlayerScale && collider.gameObject.name == "CubeKey" && !collider.gameObject.GetComponent<OVRGrabbable>().isGrabbed)
+        if (player.scaleFactor <= maxPlayerScale && collider.gameObject.name == "CubeKey" )
         {
             collided = true;
         }
