@@ -12,27 +12,25 @@ public class GrabableSizing : MonoBehaviour
     [SerializeField]
     float playerScaleRequired = 2f;
 
-    float scaleFactor;
+    float scaleFactor = 1f;
 
     // Default values if values not defined by player
     float maxScale = 3f;
     float minScale = .01f;
-    float scaleRateLimit = .05f;
 
     float playerMinScale;
     float playerMaxScale;
 
-
+    float scaleRateLimit;
     Vector3 originalLocalScale;
     [SerializeField]
     bool resizable = true;
-
+    bool hasBeenGrabbed = false;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerSizingContinuous>();
         originalLocalScale = transform.localScale;
-        scaleFactor = 1f;
         grabbable = gameObject.GetComponent<OVRGrabbable>();
 
         // Scaling behavior same as player's
@@ -45,13 +43,25 @@ public class GrabableSizing : MonoBehaviour
     void Update()
     {
         /* If the object is too heavy, drop it */
-        if (!grabbable.isGrabbed) return;
+        // playerScaleRequired = scaleFactor * playerScaleRequired;
+        if (!grabbable.isGrabbed){
+            hasBeenGrabbed = false;
+            return;
+        }
+        if(!hasBeenGrabbed){
+            setScaleRateLimit();
+            hasBeenGrabbed = true;
+        }
         CompareGrabbedObjectWeight();
         /* If the player is holding an object, scale it with the player */
         if (!resizable) return;
         ScaleGrabbedObject();
     }
-
+    void setScaleRateLimit(){
+        PlayerSizingContinuous grabbingPlayer = grabbable.grabbedBy.GetComponentInParent<PlayerSizingContinuous>();
+        scaleRateLimit = player.GetScaleRateLimit() * scaleFactor / grabbingPlayer.scaleFactor;
+        // Debug.log(scale)
+    }
     void CompareGrabbedObjectWeight()
     {
         // grabbingPlayer could come back null
@@ -69,8 +79,8 @@ public class GrabableSizing : MonoBehaviour
 
         if (IsPlayerScaling())
         {
-            float newScale = GetnewScale() + scaleFactor;
-            float playerNewScale = GetnewScale() + player.GetScaleFactor();
+            float newScale = GetNewScale() + scaleFactor;
+            float playerNewScale = player.GetNewScale() + player.GetScaleFactor();
             if(playerNewScale > playerMinScale && playerNewScale < playerMaxScale)
             {
                 if (newScale > minScale && newScale < maxScale)
@@ -88,7 +98,7 @@ public class GrabableSizing : MonoBehaviour
     }
 
     // [-1, 1] * rate limit
-    float GetnewScale()
+    float GetNewScale()
     {
         return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") * scaleRateLimit;
     }

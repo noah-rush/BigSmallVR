@@ -20,7 +20,7 @@ public class PlayerSizingContinuous : MonoBehaviour
     public GameObject debugger;
 
     [SerializeField]
-    float scaleRateLimit = 0.1f;
+    float scaleRateLimit = 0.0001f;
     public float scaleFactor = 1f; // Used in grabbable objects to check if they can be grabbed by player
     float minPlayerScale = 0.25f;
     float maxPlayerScale = 10f;
@@ -28,7 +28,6 @@ public class PlayerSizingContinuous : MonoBehaviour
     public bool vibrateRightHand = false;
     public bool vibrateLeftHand = false;
     public float vibratePower = 0.0f;
-
 
     void Start()
     {
@@ -51,7 +50,7 @@ public class PlayerSizingContinuous : MonoBehaviour
         return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") != 0;
     }
     // [-1, 1] * rate limit
-    float GetNewScale()
+    public float GetNewScale()
     {
         return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") * scaleRateLimit;
     }
