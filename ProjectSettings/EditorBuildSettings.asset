@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Assignment_3/Scenes/BigSmall.unity
     guid: e6ef492cc418e4025bcb06f53560d77e
+  - enabled: 0
+    path: Assets/TMI - Dungeon/Dungeon Scene.unity
+    guid: e2860e75a64fa784fa5fcc2034ea1cdc
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 89378e14f515be543a24f85e24ce94b8,
       type: 2}
