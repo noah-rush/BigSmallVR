@@ -12,7 +12,7 @@ public class GrabableSizing : MonoBehaviour
     [SerializeField]
     float playerScaleRequired = 2f;
 
-    float scaleFactor = 1f;
+    public float scaleFactor = 1f;
 
     // Default values if values not defined by player
     float maxScale = 3f;
