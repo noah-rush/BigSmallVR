@@ -125,9 +125,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets:
-  - {fileID: -2333912477823008949, guid: b997ca5e7de984e2eaeb21693857c8d0, type: 2}
-  - {fileID: 11400000, guid: 89378e14f515be543a24f85e24ce94b8, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -170,7 +168,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: BIGSmall.Andrew.Noah.Antonio
+    Android: edu.cornell.cs5650.fa2020.g08.p2
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 23
