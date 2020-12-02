@@ -3936,7 +3936,6 @@ Transform:
 --- !u!1 &391549971
 GameObject:
   m_ObjectHideFlags: 0
-<<<<<<< HEAD
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 1089347497}
