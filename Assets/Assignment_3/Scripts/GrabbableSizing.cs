@@ -4,40 +4,102 @@ using UnityEngine;
 
 public class GrabbableSizing : MonoBehaviour
 {
+
+    PlayerSizingContinuous player;
+
+    OVRGrabbable grabbable;
+
     [SerializeField]
-    OVRGrabbable m_Grabbable;
+    float playerScaleRequired = 2f;
 
-    public Vector3 maxObjectSize;
-    public Vector3 minObjectSize;
-    public float objectSizeIncrement;
+    float scaleFactor = 1f;
 
+    // Default values if values not defined by player
+    float maxScale = 3f;
+    float minScale = .01f;
+
+    float playerMinScale;
+    float playerMaxScale;
+
+    float scaleRateLimit;
+    Vector3 originalLocalScale;
+    [SerializeField]
+    bool resizable = true;
+    bool hasBeenGrabbed = false;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerSizingContinuous>();
+        originalLocalScale = transform.localScale;
+        grabbable = gameObject.GetComponent<OVRGrabbable>();
 
+        // Scaling behavior same as player's
+        playerMaxScale = player.GetMaxScale();
+        playerMinScale = player.GetMinScale();
+        scaleRateLimit = player.GetScaleRateLimit();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (m_Grabbable.isGrabbed)
+        /* If the object is too heavy, drop it */
+        // playerScaleRequired = scaleFactor * playerScaleRequired;
+        if (!grabbable.isGrabbed){
+            hasBeenGrabbed = false;
+            return;
+        }
+        if(!hasBeenGrabbed){
+            setScaleRateLimit();
+            hasBeenGrabbed = true;
+        }
+        CompareGrabbedObjectWeight();
+        /* If the player is holding an object, scale it with the player */
+        if (!resizable) return;
+        ScaleGrabbedObject();
+    }
+    void setScaleRateLimit(){
+        PlayerSizingContinuous grabbingPlayer = grabbable.grabbedBy.GetComponentInParent<PlayerSizingContinuous>();
+        scaleRateLimit = player.GetScaleRateLimit() * scaleFactor / grabbingPlayer.scaleFactor;
+        // Debug.log(scale)
+    }
+    void CompareGrabbedObjectWeight()
+    {
+        // grabbingPlayer could come back null
+        PlayerSizingContinuous grabbingPlayer = grabbable.grabbedBy.GetComponentInParent<PlayerSizingContinuous>();
+        if(grabbingPlayer.scaleFactor < playerScaleRequired)
         {
-            // If the joystick is going up, increase player size
-            if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") > 0)
+            grabbable.grabbedBy.ForceRelease(grabbable);
+        }
+    }
+
+    void ScaleGrabbedObject()
+    {
+        // object is not being grabbed, nothing to do
+        // if (!grabbable.isGrabbed) return;
+
+        if (IsPlayerScaling())
+        {
+            float newScale = GetNewScale() + scaleFactor;
+            float playerNewScale = player.GetNewScale() + player.GetScaleFactor();
+            if(playerNewScale > playerMinScale && playerNewScale < playerMaxScale)
             {
-                if (m_Grabbable.gameObject.transform.localScale.y < maxObjectSize.y)
+                if (newScale > minScale && newScale < maxScale)
                 {
-                    m_Grabbable.gameObject.transform.localScale += objectSizeIncrement * Vector3.one;
-                }
-            }
-            // If the joystick is going down, decrease player size
-            else if (Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") < 0)
-            {
-                if (m_Grabbable.gameObject.transform.localScale.y > minObjectSize.y)
-                {
-                    m_Grabbable.gameObject.transform.localScale -= objectSizeIncrement * Vector3.one;
+                    scaleFactor = newScale;
+                    transform.localScale = originalLocalScale * scaleFactor;
                 }
             }
         }
+    }
+
+    bool IsPlayerScaling()
+    {
+        return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") != 0;
+    }
+
+    // [-1, 1] * rate limit
+    float GetNewScale()
+    {
+        return Input.GetAxis("Oculus_CrossPlatform_SecondaryThumbstickVertical") * scaleRateLimit;
     }
 }
