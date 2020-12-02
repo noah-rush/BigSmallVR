@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 4869839671998324}
   - component: {fileID: 33082115876007320}
   - component: {fileID: 23497771793360102}
+  - component: {fileID: 4973715918858651675}
   - component: {fileID: 64134821100835332}
   - component: {fileID: 2051179882075832927}
   - component: {fileID: 395015401817716653}
-  - component: {fileID: 6935053806171029461}
-  - component: {fileID: 1198189199349160170}
+  - component: {fileID: 5039160538151627893}
+  - component: {fileID: 886587106504007647}
   - component: {fileID: 8724666428175892141}
-  - component: {fileID: 4973715918858651675}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Candle_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,6 +87,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!54 &4973715918858651675
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185721306350292}
+  serializedVersion: 2
+  m_Mass: 3
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!64 &64134821100835332
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -98,7 +114,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 69e3db67b03e10b4d8ed863089666e76, type: 3}
 --- !u!114 &2051179882075832927
@@ -116,7 +132,8 @@ MonoBehaviour:
   m_allowOffhandGrab: 1
   m_snapPosition: 0
   m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
+  m_snapOffset: {fileID: 7736276303741826672, guid: 5157dff17be4b4b2f92c06c440102df5,
+    type: 3}
   m_grabPoints: []
   m_materialColorField: 
 --- !u!114 &395015401817716653
@@ -133,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScaleRequired: 2
   resizable: 1
---- !u!114 &6935053806171029461
+--- !u!114 &5039160538151627893
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,9 +170,9 @@ MonoBehaviour:
   _isRootPrefabView: 1
   _components:
   - componentID: 1
-    component: {fileID: 1198189199349160170}
+    component: {fileID: 886587106504007647}
   _childViews: []
---- !u!114 &1198189199349160170
+--- !u!114 &886587106504007647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,22 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c07483ca2383414d8c7b760074944d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &4973715918858651675
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185721306350292}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1786610247323450
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ GameObject:
   - component: {fileID: 4725283905157496}
   - component: {fileID: 33238952237602516}
   - component: {fileID: 23182963806006768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wick
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -55,7 +55,7 @@ public class CrossbowShooter : MonoBehaviour
         needsReload = true;
         // fire bullet
         GameObject currBullet = Instantiate(bullet);
-        float crossbowScaleFactor = gameObject.GetComponent<GrabableSizing>().scaleFactor;
+        float crossbowScaleFactor = gameObject.GetComponent<GrabbableSizing>().scaleFactor;
         currBullet.transform.localScale = currBullet.transform.localScale * crossbowScaleFactor;
         currBullet.transform.position = crossbowTip.position;
         currBullet.transform.rotation = crossbowTip.rotation;

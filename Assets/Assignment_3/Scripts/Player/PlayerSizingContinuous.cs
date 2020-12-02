@@ -20,10 +20,10 @@ public class PlayerSizingContinuous : MonoBehaviour
     public GameObject debugger;
 
     [SerializeField]
-    float scaleRateLimit = 0.0001f;
+    float scaleRateLimit = 0.0002f;
     public float scaleFactor = 1f; // Used in grabbable objects to check if they can be grabbed by player
     float minPlayerScale = 0.25f;
-    float maxPlayerScale = 10f;
+    float maxPlayerScale = 40f;
     Vector3 playerInitialScale;
     public bool vibrateRightHand = false;
     public bool vibrateLeftHand = false;
