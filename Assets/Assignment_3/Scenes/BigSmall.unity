@@ -2008,8 +2008,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823b43eec574eef4494a3965545e0420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScaleRequired: 2
-  resizable: 0
 --- !u!114 &172315400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9045,11 +9043,11 @@ GameObject:
   - component: {fileID: 1112189530}
   - component: {fileID: 1112189529}
   - component: {fileID: 1112189528}
-  - component: {fileID: 1112189527}
   - component: {fileID: 1112189526}
   - component: {fileID: 1112189525}
   - component: {fileID: 1112189524}
   - component: {fileID: 1112189523}
+  - component: {fileID: 1112189527}
   m_Layer: 8
   m_Name: crossbow
   m_TagString: Untagged
@@ -9132,10 +9130,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1112189522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 823b43eec574eef4494a3965545e0420, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d513e4f99ee643999404d058fa82e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScaleRequired: 0
+  playerScaleRequired: 2
+  scaleFactor: 1
   resizable: 1
 --- !u!114 &1112189528
 MonoBehaviour:
@@ -15783,8 +15782,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823b43eec574eef4494a3965545e0420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScaleRequired: 0
-  resizable: 1
 --- !u!114 &1900704835
 MonoBehaviour:
   m_ObjectHideFlags: 0
