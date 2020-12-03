@@ -2020,6 +2020,7 @@ MonoBehaviour:
   originalLocalScale: {x: 0, y: 0, z: 0}
   resizable: 0
   hasBeenGrabbed: 0
+
 --- !u!114 &172315400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9145,6 +9146,7 @@ GameObject:
   - component: {fileID: 1112189524}
   - component: {fileID: 1112189527}
   - component: {fileID: 1112189523}
+  - component: {fileID: 1112189527}
   m_Layer: 8
   m_Name: crossbow
   m_TagString: Untagged
