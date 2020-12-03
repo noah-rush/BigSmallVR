@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4973715918858651675}
   - component: {fileID: 64134821100835332}
   - component: {fileID: 2051179882075832927}
-  - component: {fileID: 395015401817716653}
+  - component: {fileID: 6499850484382556934}
   - component: {fileID: 5039160538151627893}
   - component: {fileID: 886587106504007647}
   - component: {fileID: 8724666428175892141}
@@ -136,7 +136,7 @@ MonoBehaviour:
     type: 3}
   m_grabPoints: []
   m_materialColorField: 
---- !u!114 &395015401817716653
+--- !u!114 &6499850484382556934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,10 +145,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1185721306350292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 823b43eec574eef4494a3965545e0420, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d513e4f99ee643999404d058fa82e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerScaleRequired: 2
+  scaleFactor: 1
   resizable: 1
 --- !u!114 &5039160538151627893
 MonoBehaviour:
