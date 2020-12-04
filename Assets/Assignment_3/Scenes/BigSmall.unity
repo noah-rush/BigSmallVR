@@ -20674,6 +20674,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: crossbow
       objectReference: {fileID: 0}
+    - target: {fileID: 3896509616376397392, guid: 8c52cd9465744499d854ae7e4dd174b4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4427268561168564875, guid: 8c52cd9465744499d854ae7e4dd174b4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20729,6 +20734,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5942084276744002954, guid: 8c52cd9465744499d854ae7e4dd174b4,
+        type: 3}
+      propertyPath: m_snapOffset
+      value: 
+      objectReference: {fileID: 1026720698}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c52cd9465744499d854ae7e4dd174b4, type: 3}
 --- !u!1001 &5465862300806455372
