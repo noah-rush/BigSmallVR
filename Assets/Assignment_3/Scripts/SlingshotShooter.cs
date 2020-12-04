@@ -9,8 +9,8 @@ using Normal.Realtime;
 public class SlingshotShooter : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    GameObject bullet;
+    // [SerializeField]
+    // GameObject bullet;
 
     [SerializeField]
     Transform crossbowTip;

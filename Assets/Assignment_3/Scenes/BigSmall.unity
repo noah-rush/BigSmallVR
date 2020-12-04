@@ -12623,7 +12623,6 @@ GameObject:
   - component: {fileID: 1266976507}
   - component: {fileID: 1266976510}
   - component: {fileID: 1266976509}
-  - component: {fileID: 1266976508}
   m_Layer: 8
   m_Name: Branch1
   m_TagString: Untagged
@@ -12645,20 +12644,6 @@ Transform:
   m_Father: {fileID: 1976300989}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -31.568, y: 0, z: 0}
---- !u!136 &1266976508
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1266976506}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1266976509
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12932,7 +12917,6 @@ GameObject:
   - component: {fileID: 1295506723}
   - component: {fileID: 1295506726}
   - component: {fileID: 1295506725}
-  - component: {fileID: 1295506724}
   m_Layer: 8
   m_Name: Branch2
   m_TagString: Untagged
@@ -12954,20 +12938,6 @@ Transform:
   m_Father: {fileID: 1976300989}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 31.56, y: 0, z: 0}
---- !u!136 &1295506724
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295506722}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1295506725
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13320,7 +13290,6 @@ GameObject:
   - component: {fileID: 1311991155}
   - component: {fileID: 1311991158}
   - component: {fileID: 1311991157}
-  - component: {fileID: 1311991156}
   m_Layer: 8
   m_Name: Base
   m_TagString: Untagged
@@ -13342,20 +13311,6 @@ Transform:
   m_Father: {fileID: 1976300989}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1311991156
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1311991154}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1311991157
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19666,9 +19621,9 @@ GameObject:
   - component: {fileID: 1976300983}
   - component: {fileID: 1976300982}
   - component: {fileID: 1976300981}
-  - component: {fileID: 1976300980}
   - component: {fileID: 1976300979}
-  m_Layer: 0
+  - component: {fileID: 1976300980}
+  m_Layer: 8
   m_Name: Slingshot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19699,7 +19654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1042054a65b764099944e2c7d72083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
   crossbowTip: {fileID: 2102988581}
 --- !u!114 &1976300981
 MonoBehaviour:
@@ -19733,7 +19687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _realtime: {fileID: 607719074}
   _sceneViewUUID: 
-  _viewUUID: f4cc62ea-4838-4446-8492-eb34b7cdff13
+  _viewUUID: 5778dabc-11d0-4376-9a08-e9a8f12979e7
   _sceneViewPreventOwnershipTakeover: 0
   _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
   _isRootPrefabView: 0
@@ -19753,7 +19707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d513e4f99ee643999404d058fa82e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScaleRequired: 2
+  playerScaleRequired: 1
   scaleFactor: 1
   resizable: 1
 --- !u!114 &1976300984
