@@ -67,7 +67,7 @@ public class Match : MonoBehaviour
         }
     }
     IEnumerator litMatch(){
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(6.0f);
         lit = false;
         matchParent.transform.GetChild(1).gameObject.SetActive(false);
         // StartCoroutine(ExampleCoroutine());
