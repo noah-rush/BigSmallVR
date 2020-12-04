@@ -61,7 +61,7 @@ public class Match : MonoBehaviour
                 grabbingPlayer.vibrateRightHand = false;
                 lit = true;
                 matchParent.transform.GetChild(1).gameObject.SetActive(true);
-                StartCoroutine(litMatch);
+                StartCoroutine("litMatch");
                 
             }
         }
