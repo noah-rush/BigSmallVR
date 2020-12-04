@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d513e4f99ee643999404d058fa82e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScaleRequired: 2
+  playerScaleRequired: 0
   scaleFactor: 1
   resizable: 1
 --- !u!114 &5039160538151627893

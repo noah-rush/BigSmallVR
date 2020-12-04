@@ -5047,8 +5047,9 @@ GameObject:
   - component: {fileID: 2097797451508145259}
   - component: {fileID: 2586623483167096215}
   - component: {fileID: 9177585408302280866}
+  - component: {fileID: 2095559461964913612}
   m_Layer: 8
-  m_Name: Cube_001
+  m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5115,6 +5116,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &2095559461964913612
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652543498794907605}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.030870177, y: 0.030870182, z: 0.0349533}
+  m_Center: {x: 0.0000009536743, y: 0, z: 0}
 --- !u!1 &3881290332164399084
 GameObject:
   m_ObjectHideFlags: 0
