@@ -21,10 +21,10 @@ public class Book : MonoBehaviour
     	
 		// OVRInput.Get(OVRInput.RawButton.LIndexTrigger);
         if (grabbable.isGrabbed){
-          
+                if(axis.eulerAngles.z < 5){
                 axis.eulerAngles = new Vector3(axis.rotation.eulerAngles.x,axis.rotation.eulerAngles.y,  axis.rotation.eulerAngles.z - OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger));   
-                axis.eulerAngles = new Vector3(axis.rotation.eulerAngles.x,axis.rotation.eulerAngles.y,  axis.rotation.eulerAngles.z + OVRInput.Get(OVRInput.RawAxis1D.LIndexTrigger));   
-            
+                // axis.eulerAngles = new Vector3(axis.rotation.eulerAngles.x,axis.rotation.eulerAngles.y,  axis.rotation.eulerAngles.z + OVRInput.Get(OVRInput.RawAxis1D.LIndexTrigger));   
+                }
 
         }
     }
