@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Normal.Realtime;
+
 
 public class CrossbowShooter : MonoBehaviour
 {
@@ -12,7 +14,7 @@ public class CrossbowShooter : MonoBehaviour
 
     [SerializeField]
     Transform crossbowTip;
-
+    private Realtime _realtime;
     private OVRGrabber grabbingPlayer;
     private DistanceGrabbable crossbow;
 
@@ -22,6 +24,7 @@ public class CrossbowShooter : MonoBehaviour
     void Start()
     {
         crossbow = gameObject.GetComponent<DistanceGrabbable>();
+        _realtime = GetComponent<Realtime>();
     }
 
     private bool GetTriggerPulled()
@@ -51,14 +54,18 @@ public class CrossbowShooter : MonoBehaviour
 
     private void Shoot()
     {
-        // force a reload 
+// /   / force a reload 
         needsReload = true;
         // fire bullet
-        GameObject currBullet = Instantiate(bullet);
+        GameObject currBullet=  Realtime.Instantiate("NormcoreGrabbable",                 // Prefab name
+                             position: crossbowTip.position,          // Start 1 meter in the air
+                             rotation: crossbowTip.rotation, // No rotation
+                             ownedByClient: false,   // Make sure the RealtimeView on this prefab is NOT owned by this client
+                             preventOwnershipTakeover: false,                // DO NOT prevent other clients from calling RequestOwnership() on the root RealtimeView.
+                             useInstance: _realtime);           // Use the instance of Realtime that fired the didConnectToRoom event.
+       
         float crossbowScaleFactor = gameObject.GetComponent<GrabbableSizing>().scaleFactor;
         currBullet.transform.localScale = currBullet.transform.localScale * crossbowScaleFactor;
-        currBullet.transform.position = crossbowTip.position;
-        currBullet.transform.rotation = crossbowTip.rotation;
         currBullet.GetComponent<Rigidbody>().AddForce((currBullet.transform.position - transform.position) * (40 /* * crossbowScaleFactor*/), ForceMode.Impulse);
     }
 
