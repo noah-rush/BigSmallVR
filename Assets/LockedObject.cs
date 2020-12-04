@@ -9,6 +9,11 @@ public class LockedObject : MonoBehaviour
     OVRGrabbable grabbable;
     Quaternion defaultRotation;
     PlayerSizingContinuous grabbingPlayer;
+
+    [SerializeField]
+    bool changeColorOnGrab = true;
+
+
     void Start()
     {
         grabbable = gameObject.GetComponent<OVRGrabbable>();
@@ -27,11 +32,11 @@ public class LockedObject : MonoBehaviour
             grabbingPlayer = grabbable.grabbedBy.GetComponentInParent<PlayerSizingContinuous>();
             grabbingPlayer.vibrateRightHand = true;
             grabbingPlayer.vibratePower = transform.position.y - 0.9f;
-            gameObject.GetComponent<Renderer> ().material.color = Color.green;
+            if (changeColorOnGrab) gameObject.GetComponent<Renderer> ().material.color = Color.green;
         }
         else
         {
-            gameObject.GetComponent<Renderer> ().material.color = Color.red;
+            if (changeColorOnGrab) gameObject.GetComponent<Renderer> ().material.color = Color.red;
             grabbingPlayer.vibrateRightHand = false;
  
  

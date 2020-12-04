@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class JailDoorMechanics : MonoBehaviour
 {
+    [SerializeField]
+    float jailDoorHeightDelay = 3f;
     GameObject jailDoor;
     Vector3 startPos, jailDoorStartPos;
     float heightDiff = 0f;
@@ -21,6 +23,6 @@ public class JailDoorMechanics : MonoBehaviour
     void Update()
     {
         heightDiff = transform.position.y - startPos.y;
-        jailDoor.transform.position = jailDoorStartPos + new Vector3(0, heightDiff, 0);
+        jailDoor.transform.position = jailDoorStartPos + new Vector3(0, heightDiff/3, 0);
     }
 }
