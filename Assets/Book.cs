@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Normal.Realtime;
 
 public class Book : MonoBehaviour
 {
@@ -8,10 +9,16 @@ public class Book : MonoBehaviour
     OVRGrabbable grabbable;
     // boolean open = false;
     Transform axis;
+    private RealtimeView _axisRealtime;
+    private RealtimeTransform _axisTransform;
+
+
     void Start()
     {
         axis = this.gameObject.transform.GetChild(0);
         grabbable = gameObject.GetComponent<OVRGrabbable>();
+        _axisRealtime = axis.gameObject.GetComponent<RealtimeView>();
+        _axisTransform = axis.gameObject.GetComponent<RealtimeTransform>();
 
     }
 
@@ -21,9 +28,9 @@ public class Book : MonoBehaviour
     	
 		// OVRInput.Get(OVRInput.RawButton.LIndexTrigger);
         if (grabbable.isGrabbed){
+                _axisTransform.RequestOwnership();
                 axis.eulerAngles = new Vector3(axis.rotation.eulerAngles.x,axis.rotation.eulerAngles.y,  axis.rotation.eulerAngles.z - OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger));   
-                axis.eulerAngles = new Vector3(axis.rotation.eulerAngles.x,axis.rotation.eulerAngles.y,  axis.rotation.eulerAngles.z + OVRInput.Get(OVRInput.RawAxis1D.LIndexTrigger));   
-                
+                axis.eulerAngles = new Vector3(axis.rotation.eulerAngles.x,axis.rotation.eulerAngles.y,  axis.rotation.eulerAngles.z + OVRInput.Get(OVRInput.RawAxis1D.LIndexTrigger));        
         }
     }
 }
