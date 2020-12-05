@@ -11555,9 +11555,17 @@ PrefabInstance:
       propertyPath: m_maxGrabDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1002143407721572, guid: 0242aa8515b4bc947a945a5c6df83ee9, type: 3}
+      propertyPath: m_TagString
+      value: LeftHand
+      objectReference: {fileID: 0}
     - target: {fileID: 1620805885933330, guid: 0242aa8515b4bc947a945a5c6df83ee9, type: 3}
       propertyPath: m_Name
       value: DistanceGrabHandLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620805885933330, guid: 0242aa8515b4bc947a945a5c6df83ee9, type: 3}
+      propertyPath: m_TagString
+      value: LeftHand
       objectReference: {fileID: 0}
     - target: {fileID: 4669234126623968, guid: 0242aa8515b4bc947a945a5c6df83ee9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12685,6 +12693,14 @@ PrefabInstance:
     - target: {fileID: 1173658494909946, guid: 6fae51a9f4170334e8639e8dbfc0a54b, type: 3}
       propertyPath: m_Name
       value: DistanceGrabHandRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 1173658494909946, guid: 6fae51a9f4170334e8639e8dbfc0a54b, type: 3}
+      propertyPath: m_TagString
+      value: RightHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 1191426646027960, guid: 6fae51a9f4170334e8639e8dbfc0a54b, type: 3}
+      propertyPath: m_TagString
+      value: RightHand
       objectReference: {fileID: 0}
     - target: {fileID: 4580194091363106, guid: 6fae51a9f4170334e8639e8dbfc0a54b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19694,7 +19710,6 @@ GameObject:
   - component: {fileID: 1976300982}
   - component: {fileID: 1976300981}
   - component: {fileID: 1976300979}
-  - component: {fileID: 1976300980}
   m_Layer: 8
   m_Name: Slingshot
   m_TagString: Untagged
@@ -19714,19 +19729,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c07483ca2383414d8c7b760074944d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1976300980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976300978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1042054a65b764099944e2c7d72083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crossbowTip: {fileID: 2102988581}
 --- !u!114 &1976300981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21034,6 +21036,8 @@ GameObject:
   - component: {fileID: 2102988584}
   - component: {fileID: 2102988583}
   - component: {fileID: 2102988582}
+  - component: {fileID: 2102988585}
+  - component: {fileID: 2102988586}
   m_Layer: 8
   m_Name: FirePoint
   m_TagString: Untagged
@@ -21049,8 +21053,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102988580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.055661876, y: 0.4584708, z: -0.007241342}
-  m_LocalScale: {x: 1.4431012, y: 0.26833117, z: 0.4308784}
+  m_LocalPosition: {x: 0.055661876, y: 0.522, z: -0.007241342}
+  m_LocalScale: {x: 4.514168, y: 0.83936733, z: 1.3478316}
   m_Children: []
   m_Father: {fileID: 1976300989}
   m_RootOrder: 3
@@ -21063,7 +21067,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102988580}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -21115,6 +21119,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102988580}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2102988585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102988580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1042054a65b764099944e2c7d72083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crossbowTip: {fileID: 2102988581}
+--- !u!54 &2102988586
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102988580}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &2115268891
 GameObject:
   m_ObjectHideFlags: 0
