@@ -182,7 +182,11 @@ namespace OculusSampleFramework
                     {
 
                         Quaternion snapOffset = m_grabbedObj.snapOffset.rotation;
-                        if (m_controller == OVRInput.Controller.LTouch) snapOffset.z = -snapOffset.z;
+                        if (m_controller == OVRInput.Controller.LTouch)
+                        {
+                            snapOffset.x = -snapOffset.x;
+                            snapOffset.z = -snapOffset.z;
+                        }
                         m_grabbedObjectRotOff = snapOffset * m_grabbedObjectRotOff;
                     }
                 }
