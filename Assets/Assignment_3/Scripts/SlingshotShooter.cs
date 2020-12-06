@@ -11,9 +11,17 @@ public class SlingshotShooter : MonoBehaviour
 
     [SerializeField]
     Transform crossbowTip;
-    private Realtime _realtime;
-    private OVRGrabber grabbingPlayer;
-    private DistanceGrabbable crossbow;
+    [SerializeField]
+    Transform leftStringPos;
+    [SerializeField]
+    Transform rightStringPos;
+
+    Realtime _realtime;
+    OVRGrabber grabbingPlayer;
+    DistanceGrabbable crossbow;
+    LineRenderer stringRenderer;
+    GrabbableSizing slingshot;
+    float stringWidth = 0.2f;
 
     GameObject currBullet;
 
@@ -22,9 +30,15 @@ public class SlingshotShooter : MonoBehaviour
 
     void Start()
     {
+        slingshot = GetComponentInParent<GrabbableSizing>();
         crossbow = GetComponentInParent<DistanceGrabbable>();
         currBullet = null;
         _realtime = GetComponentInParent<Realtime>();
+
+        // set up the string
+        stringRenderer = GetComponent<LineRenderer>();
+        SetStringWidth();
+        SetStringPos();
     }
 
     void OnTriggerStay(Collider collision)
@@ -43,7 +57,7 @@ public class SlingshotShooter : MonoBehaviour
                              useInstance: _realtime);           // Use the instance of Realtime that fired the didConnectToRoom event.
 
             SlingshotBullet currBulletScript = currBullet.GetComponent<SlingshotBullet>();
-            currBulletScript.slingshot = GetComponentInParent<GrabbableSizing>();
+            currBulletScript.slingshot = slingshot;//GetComponentInParent<GrabbableSizing>();
             currBulletScript.playerHand = collision.transform;
             currBulletScript.grabbingPlayer = grabbingPlayer;
             currBulletScript.slingshotTip = crossbowTip;
@@ -53,6 +67,19 @@ public class SlingshotShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // set the string pos based on if the player is pulling it
+        if (currBullet != null)
+        {
+            // set the middle pos to the ball vector
+            SetStringPos(currBullet.transform.position);
+        }
+        else
+        {
+            // set the middle pos to between the two branches
+            SetStringPos();
+        }
+        SetStringWidth();
+
         /* Handle firing the gun */
         grabbingPlayer = crossbow.grabbedBy;
         if (!grabbingPlayer)
@@ -67,5 +94,24 @@ public class SlingshotShooter : MonoBehaviour
         {
             currBullet = null;
         }
+    }
+
+    void SetStringWidth()
+    {
+        stringRenderer.startWidth = stringWidth * slingshot.scaleFactor;
+        stringRenderer.endWidth = stringWidth * slingshot.scaleFactor;
+    }
+    void SetStringPos()
+    {
+        stringRenderer.SetPosition(0, leftStringPos.transform.position);
+        stringRenderer.SetPosition(1, Vector3.Lerp(rightStringPos.transform.position, leftStringPos.transform.position, 0.5f));
+        stringRenderer.SetPosition(2, rightStringPos.transform.position);
+    }
+
+    void SetStringPos(Vector3 middlePos)
+    {
+        stringRenderer.SetPosition(0, leftStringPos.transform.position);
+        stringRenderer.SetPosition(1, middlePos);
+        stringRenderer.SetPosition(2, rightStringPos.transform.position);
     }
 }
