@@ -43,6 +43,8 @@ public class SlingshotShooter : MonoBehaviour
 
     void OnTriggerStay(Collider collision)
     {
+        if (!grabbingPlayer) return;
+
         if (currBullet == null 
             && ((collision.gameObject.tag == "LeftHand" 
             && OVRInput.Get(OVRInput.RawButton.LIndexTrigger))
@@ -92,6 +94,7 @@ public class SlingshotShooter : MonoBehaviour
             && (grabbingPlayer.m_controller == OVRInput.Controller.LTouch && OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger) <= 0.05f // players holding in left hand lets go of ball with right
             || grabbingPlayer.m_controller == OVRInput.Controller.RTouch && OVRInput.Get(OVRInput.RawAxis1D.LIndexTrigger) <= 0.05f))
         {
+            SetStringPos();
             currBullet = null;
         }
     }
