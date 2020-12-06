@@ -86,6 +86,11 @@ public class SlingshotShooter : MonoBehaviour
         grabbingPlayer = crossbow.grabbedBy;
         if (!grabbingPlayer)
         {
+            if(currBullet != null)
+            {
+                Destroy(currBullet);
+                currBullet = null;
+            }
             return;
         }
 
