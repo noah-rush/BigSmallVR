@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 9132328039065486795}
   - component: {fileID: 9132328039065486794}
   - component: {fileID: 9132328039065486793}
-  - component: {fileID: 9132328039065486799}
+  - component: {fileID: 3661618804600704732}
   m_Layer: 8
   m_Name: Slingshot
   m_TagString: Untagged
@@ -524,7 +524,7 @@ MonoBehaviour:
   _syncScale: 1
   _syncVelocity: 1
   _maintainOwnershipWhileSleeping: 0
---- !u!114 &9132328039065486799
+--- !u!114 &3661618804600704732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -533,7 +533,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9132328039065486798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c07483ca2383414d8c7b760074944d0, type: 3}
+  m_Script: {fileID: 11500000, guid: a1d48ba29b97a4b48bf9033010c8f2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9132328039190134616

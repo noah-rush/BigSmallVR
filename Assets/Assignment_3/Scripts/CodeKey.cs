@@ -28,12 +28,14 @@ public class CodeKey : MonoBehaviour
             Pressed = true;//update pressed
             endPos = Location.position;
             StartCoroutine("buttonReset");
-            
-        }else{
+
+        }
+        else
+        {
 
         }
 
-       
+
     }
     // void OnCollisionExit(Collision collision)//check for when to unlock the button
     // {
@@ -45,15 +47,17 @@ public class CodeKey : MonoBehaviour
     //         StartCoroutine("buttonReset");
     //     }
     // }
-    IEnumerator buttonReset(){
+    IEnumerator buttonReset()
+    {
         yield return new WaitForSeconds(.4f);
-         for (float ft = 0f; ft <= 1f; ft += 0.1f) 
+        for (float ft = 0f; ft <= 1f; ft += 0.01f)
         {
             Location.position = Vector3.Lerp(endPos, StartPos, ft);
-
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.005f);
         }
         Pressed = false;
+        GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionZ; //Remove Y movement constraint.
+
     }
 
 

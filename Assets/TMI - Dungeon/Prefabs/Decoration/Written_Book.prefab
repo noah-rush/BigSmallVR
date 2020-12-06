@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 1610224402703353818}
   - component: {fileID: 5251427775209584897}
   - component: {fileID: 6354023423401918273}
+  - component: {fileID: 4806909859490300873}
   m_Layer: 8
   m_Name: Written_Book
   m_TagString: Untagged
@@ -296,6 +297,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1d48ba29b97a4b48bf9033010c8f2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4806909859490300873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566287046407980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e79ac68e6069479b8e8bcf554a0018a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1738426676295296
