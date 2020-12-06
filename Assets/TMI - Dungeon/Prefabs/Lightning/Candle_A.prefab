@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6499850484382556934}
   - component: {fileID: 5039160538151627893}
   - component: {fileID: 886587106504007647}
-  - component: {fileID: 8724666428175892141}
+  - component: {fileID: 3362426362431533725}
   m_Layer: 8
   m_Name: Candle_A
   m_TagString: Untagged
@@ -191,7 +191,7 @@ MonoBehaviour:
   _syncScale: 1
   _syncVelocity: 1
   _maintainOwnershipWhileSleeping: 0
---- !u!114 &8724666428175892141
+--- !u!114 &3362426362431533725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1185721306350292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c07483ca2383414d8c7b760074944d0, type: 3}
+  m_Script: {fileID: 11500000, guid: a1d48ba29b97a4b48bf9033010c8f2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1786610247323450
@@ -215,8 +215,8 @@ GameObject:
   - component: {fileID: 33238952237602516}
   - component: {fileID: 23182963806006768}
   - component: {fileID: 2191086330892253098}
-  - component: {fileID: 5603891833569654475}
   - component: {fileID: 5340369936681912160}
+  - component: {fileID: 8320184734763119603}
   m_Layer: 8
   m_Name: Wick
   m_TagString: Untagged
@@ -299,18 +299,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 1.9999999, z: 0.99999994}
   m_Center: {x: 0, y: 0.99999803, z: 0}
---- !u!114 &5603891833569654475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786610247323450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952051e39cbba46d2b8ec840f374511e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &5340369936681912160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -327,6 +315,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8320184734763119603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786610247323450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8da142a954b43aebc8bb2ffdeeb95a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2347882976076573834
 GameObject:
   m_ObjectHideFlags: 0

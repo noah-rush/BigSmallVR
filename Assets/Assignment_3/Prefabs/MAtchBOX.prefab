@@ -127,8 +127,8 @@ GameObject:
   - component: {fileID: 117738614708285024}
   - component: {fileID: 5540066760246435217}
   - component: {fileID: 4581460274277015524}
-  - component: {fileID: 6218955483080702146}
   - component: {fileID: 7034341248940000432}
+  - component: {fileID: 1568245943108542592}
   m_Layer: 8
   m_Name: MAtchBOX
   m_TagString: Untagged
@@ -285,18 +285,6 @@ MonoBehaviour:
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
   m_materialColorField: 
---- !u!114 &6218955483080702146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1171049501217288752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c07483ca2383414d8c7b760074944d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7034341248940000432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +300,18 @@ MonoBehaviour:
   playerScaleRequired: 2
   scaleFactor: 1
   resizable: 1
+--- !u!114 &1568245943108542592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171049501217288752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d48ba29b97a4b48bf9033010c8f2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1562168689213268853
 GameObject:
   m_ObjectHideFlags: 0

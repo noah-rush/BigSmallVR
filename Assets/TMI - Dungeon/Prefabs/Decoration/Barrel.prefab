@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 64060261918911972}
   - component: {fileID: 3504641940181742650}
   - component: {fileID: 875470489799590226}
-  - component: {fileID: 8666859682359397574}
   - component: {fileID: 7369700578403383457}
   - component: {fileID: 1895379767058373023}
   - component: {fileID: 8924609080972664729}
+  - component: {fileID: 6181486310027470442}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -134,18 +134,6 @@ MonoBehaviour:
   m_snapOffset: {fileID: 0}
   m_grabPoints: []
   m_materialColorField: 
---- !u!114 &8666859682359397574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665991094658146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c07483ca2383414d8c7b760074944d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7369700578403383457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,3 +189,15 @@ MonoBehaviour:
   _syncScale: 1
   _syncVelocity: 1
   _maintainOwnershipWhileSleeping: 0
+--- !u!114 &6181486310027470442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665991094658146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d48ba29b97a4b48bf9033010c8f2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
