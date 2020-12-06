@@ -38,6 +38,7 @@ public class SlingshotBullet : MonoBehaviour
                 {
                     launched = true;
                     Rigidbody rb = GetComponent<Rigidbody>();
+                    rb.mass = slingshot.scaleFactor;
                     rb.AddForce((slingshotTip.position - transform.position) * launchForce, ForceMode.Impulse);
                     Destroy(gameObject, lifeSpan); 
 
