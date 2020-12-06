@@ -4897,7 +4897,7 @@ GameObject:
   - component: {fileID: 2226094937848215291}
   - component: {fileID: 2497826085637987826}
   m_Layer: 8
-  m_Name: Cube (1)
+  m_Name: Matchhh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5010,7 +5010,8 @@ MonoBehaviour:
   m_allowOffhandGrab: 1
   m_snapPosition: 0
   m_snapOrientation: 0
-  m_snapOffset: {fileID: 0}
+  m_snapOffset: {fileID: 5099512521623942575, guid: 91663c75226134560978bff89c39429b,
+    type: 3}
   m_grabPoints: []
   m_materialColorField: 
 --- !u!114 &1303274499335272578
