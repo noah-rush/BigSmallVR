@@ -14,7 +14,7 @@ public class CodeBox : MonoBehaviour
     [SerializeField]
     GameObject door;
 
-    bool activated = false;
+    bool ready = false;
     [SerializeField]
     public GameObject ColorPlane;
 
@@ -22,24 +22,7 @@ public class CodeBox : MonoBehaviour
     private CodeSync _codeSync;
 
 
-    public bool isActive()
-    {
-        return activated;
-    }
-
-    public void activate()
-    {
-        activated = true;
-        _codeSync.SetActivation(true);
-    }
-     public void deactivate()
-    {
-        activated = false;
-        _codeSync.SetActivation(false);
-    }
-    public void setActivation(bool val){
-        activated = val;
-    }
+    
     void Start()
     {
         _codeSync = GetComponent<CodeSync>();
@@ -53,7 +36,7 @@ public class CodeBox : MonoBehaviour
     {
         var cubeRenderer = ColorPlane.GetComponent<Renderer>();
 
-        if(activated)
+        if(ready)
         {
             cubeRenderer.material.SetColor("_TintColor", Color.green);
         }
@@ -62,7 +45,7 @@ public class CodeBox : MonoBehaviour
             cubeRenderer.material.SetColor("_TintColor", Color.red);
         }
         // m_TextComponent.text = keycode;
-        if(keycode == answer && activated)
+        if(keycode == answer && ready)
         {
             _doorTransform.RequestOwnership();
             StartCoroutine("OpenDoor");
@@ -80,6 +63,24 @@ public class CodeBox : MonoBehaviour
         keycode = keycode + number;
         m_TextComponent.text = keycode;
 
+    }
+    public bool isReady()
+    {
+        return ready;
+    }
+
+    public void activate()
+    {
+        ready = true;
+        _codeSync.ready();
+    }
+     public void deactivate()
+    {
+        ready = false;
+        _codeSync.notReady();
+    }
+    public void setReady(bool val){
+        ready = val;
     }
 
     IEnumerator OpenDoor()
