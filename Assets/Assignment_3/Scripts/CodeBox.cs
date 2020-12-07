@@ -22,13 +22,16 @@ public class CodeBox : MonoBehaviour
     private RealtimeTransform _doorTransform;
     private CodeSync _codeSync;
 
-    public string getKeycode(){
+    public string getKeycode()
+    {
         return keycode;
     }
-    public bool isActive(){
+    public bool isActive()
+    {
         return activated;
     }
-    public void setKeycode(string code){
+    public void setKeycode(string code)
+    {
         if(keycode == "")
         {
             StartCoroutine("Resetter");
@@ -40,22 +43,30 @@ public class CodeBox : MonoBehaviour
     public void activate()
     {
 
-        activated = true;
-        var cubeRenderer = ColorPlane.GetComponent<Renderer>();
-        cubeRenderer.material.SetColor("_TintColor", Color.green);
         _codeSync.SetActivation(true);
-        // ColorPlane.GetComponent<BoxCo÷÷llider>().enabled = false;
     }
-    public void deactivate()
+     public void deactivate()
     {
         activated = false;
-        var cubeRenderer = ColorPlane.GetComponent<Renderer>();
-        cubeRenderer.material.SetColor("_TintColor", Color.red);
         _codeSync.SetActivation(false);
-        
-        // ColorPlane.GetComponent<BoxCollider>().enabled = true;
-
     }
+    public void activateFromModel(bool value)
+    {
+        activated = value;
+        var cubeRenderer = ColorPlane.GetComponent<Renderer>();
+
+        if(activated)
+        {
+            cubeRenderer.material.SetColor("_TintColor", Color.green);
+        }
+        else
+        {
+            cubeRenderer.material.SetColor("_TintColor", Color.red);
+
+        }
+    }
+   
+
     void Start()
     {
         _codeSync = GetComponent<CodeSync>();

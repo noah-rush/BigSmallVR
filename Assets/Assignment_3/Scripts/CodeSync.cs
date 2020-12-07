@@ -38,12 +38,8 @@ public class CodeSync : RealtimeComponent<CodeSyncModel> {
 
     private void activatedDidChange(CodeSyncModel model, bool value) {
         // Update the mesh renderer
-        if(value){
-        	_codeBox.activate();
-        }else{
-        	_codeBox.deactivate();
+        	_codeBox.activateFromModel(value);
 
-        }
     }
     private void keycodeDidChange(CodeSyncModel model, string value) {
         // Update the mesh renderer
@@ -55,10 +51,10 @@ public class CodeSync : RealtimeComponent<CodeSyncModel> {
     //     // Get the color from the model and set it on the mesh renderer.
     //     _matchClass.light();
     // }
-    public void SetActivation(bool activated) {
+    public void SetActivation(bool value) {
         // Set the color on the model
         // This will fire the colorChanged event on the model, which will update the renderer for both the local player and all remote players.
-        model.activated = activated;
+        model.activated = value;
     }
     public void SetKeycode(string keycode) {
         // Set the color on the model

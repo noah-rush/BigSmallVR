@@ -17,13 +17,13 @@ public class CodeKey : MonoBehaviour
     CodeBox codeBox;
     TMP_Text entryPanel;
 
-    private RealtimeTransform _realtimeTransform;
+    // private RealtimeTransform _realtimeTransform;
     // _realtimeTransform = GetComponent<RealtimeTransform>();
 
     // Start is called before the first frame update
     void Start()
     {
-        _realtimeTransform = GetComponent<RealtimeTransform>();
+        // _realtimeTransform = GetComponent<RealtimeTransform>();
 
         Location = transform;
         StartPos = Location.position;
@@ -53,7 +53,7 @@ public class CodeKey : MonoBehaviour
     }
     IEnumerator buttonReset()
     {
-        _realtimeTransform.RequestOwnership();
+        // _realtimeTransform.RequestOwnership();
         GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionZ; //Remove Y movement constraint.
         
         yield return new WaitForSeconds(.4f);
@@ -68,7 +68,7 @@ public class CodeKey : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-            _realtimeTransform.RequestOwnership();
+            // _realtimeTransform.RequestOwnership();
         
     }
 
