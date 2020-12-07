@@ -9,37 +9,24 @@ public class CodeBox : MonoBehaviour
     private string answer = "498";
     public string keycode;
     public GameObject entrypanel;
-    // Start is called before the first frame update
     private TMP_Text m_TextComponent;
+
     [SerializeField]
     GameObject door;
-    float timer = 0f;
+
     bool activated = false;
     [SerializeField]
     public GameObject ColorPlane;
 
-    // private RealtimeView _doorRealtime;
     private RealtimeTransform _doorTransform;
     private CodeSync _codeSync;
 
-    public string getKeycode()
-    {
-        return keycode;
-    }
+
     public bool isActive()
     {
         return activated;
     }
-    public void setKeycode(string code)
-    {
-        if(keycode == "")
-        {
-            StartCoroutine("Resetter");
 
-        }
-        keycode = code;
-        m_TextComponent.text = code;
-    }
     public void activate()
     {
         activated = true;
@@ -50,23 +37,15 @@ public class CodeBox : MonoBehaviour
         activated = false;
         _codeSync.SetActivation(false);
     }
-    public void setActivate(bool value){
-        activated = value;
-
+    public void setActivation(bool val){
+        activated = val;
     }
- 
-   
-
     void Start()
     {
         _codeSync = GetComponent<CodeSync>();
         keycode = "";
         _doorTransform = door.GetComponent<RealtimeTransform>();
-
         m_TextComponent = entrypanel.GetComponent<TMP_Text>();
-        var cubeRenderer = ColorPlane.GetComponent<Renderer>();
-        cubeRenderer.material.SetColor("_EmissionColor", Color.red);
-        // StartCoroutine("Resetter");
     }
 
     // Update is called once per frame
@@ -90,29 +69,19 @@ public class CodeBox : MonoBehaviour
 
         }
     }
-
-    public void addToKeyCode(string number)
-    {
-        // return keycode;
-        if(keycode == "")
-        {
-            StartCoroutine("Resetter");
-
-        }
-        keycode = keycode + number;
-        m_TextComponent.text = keycode;
-        // _codeSync.SetKeycode(keycode);
-
-    }
-
-    IEnumerator Resetter()
-    {
-
-        yield return new WaitForSeconds(10f);
+    public void clearCode(){
         keycode = "";
         m_TextComponent.text = keycode;
-        // print("WaitAndPrint " + Time.time);
+
     }
+    public void addToKeyCode(string number)
+    {
+
+        keycode = keycode + number;
+        m_TextComponent.text = keycode;
+
+    }
+
     IEnumerator OpenDoor()
     {
         Vector3 closed = new Vector3(0, 90, 0);
