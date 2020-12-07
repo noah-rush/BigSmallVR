@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VR;
 using UnityEngine.XR;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerSizingContinuous : MonoBehaviour
 {
@@ -116,11 +118,17 @@ public class PlayerSizingContinuous : MonoBehaviour
         OVRInput.SetControllerVibration(1, 0, OVRInput.Controller.RTouch);
         ReadjustHeadCamera();
         ResizePlayer();
-        if(vibrateRightHand){
-            OVRInput.SetControllerVibration(vibratePower/2.0f, 1, OVRInput.Controller.RTouch);
+        if(vibrateRightHand)
+        {
+            OVRInput.SetControllerVibration(vibratePower / 2.0f, 1, OVRInput.Controller.RTouch);
         }
-        if(vibrateLeftHand){
-            OVRInput.SetControllerVibration(vibratePower/2.0f, 1, OVRInput.Controller.LTouch);
+        if(vibrateLeftHand)
+        {
+            OVRInput.SetControllerVibration(vibratePower / 2.0f, 1, OVRInput.Controller.LTouch);
+        }
+        if(OVRInput.GetUp(OVRInput.RawButton.Start))
+        {
+            SceneManager.LoadScene("BigSmall");
         }
 
 

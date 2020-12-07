@@ -16,7 +16,7 @@ public class CodeBox : MonoBehaviour
     float timer = 0f;
     bool activated = false;
     [SerializeField]
-    GameObject ColorPlane;
+    public GameObject ColorPlane;
 
     // private RealtimeView _doorRealtime;
     private RealtimeTransform _doorTransform;
@@ -25,13 +25,16 @@ public class CodeBox : MonoBehaviour
 
         activated = true;
         var cubeRenderer = ColorPlane.GetComponent<Renderer>();
-        cubeRenderer.material.SetColor("_EmissionColor", Color.green);
+        cubeRenderer.material.SetColor("_TintColor", Color.green);
+        // ColorPlane.GetComponent<BoxCo÷÷llider>().enabled = false;
     }
     public void deactivate()
     {
         activated = false;
         var cubeRenderer = ColorPlane.GetComponent<Renderer>();
-        cubeRenderer.material.SetColor("_EmissionColor", Color.red);
+        cubeRenderer.material.SetColor("_TintColor", Color.red);
+        // ColorPlane.GetComponent<BoxCollider>().enabled = true;
+
     }
     void Start()
     {

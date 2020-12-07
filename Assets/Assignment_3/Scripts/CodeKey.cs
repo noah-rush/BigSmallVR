@@ -22,6 +22,7 @@ public class CodeKey : MonoBehaviour
         StartPos = Location.position;
         number = transform.GetChild(0).GetComponent<TMP_Text>().text;
         codeBox = transform.parent.gameObject.GetComponent<CodeBox>();
+        Physics.IgnoreCollision(codeBox.ColorPlane.GetComponent<BoxCollider>(), GetComponent<BoxCollider>());
     }
     void Update()
     {

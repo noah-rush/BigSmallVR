@@ -5,7 +5,8 @@ using UnityEngine;
 public class ControllerBehavior : MonoBehaviour
 {
     float timer = 0f;
-
+    [SerializeField] 
+    float timeToLive;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,7 @@ public class ControllerBehavior : MonoBehaviour
     {
         if (gameObject.activeSelf) timer += Time.deltaTime;
 
-        if (timer > 5f)
+        if (timer > timeToLive)
         {
             gameObject.SetActive(false);
             timer = 0f;
