@@ -7570,7 +7570,7 @@ MonoBehaviour:
   _sceneViewUUID: 
   _viewUUID: 36ebc8fc-27ad-41fa-bb01-9c2a93704586
   _sceneViewPreventOwnershipTakeover: 0
-  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
+  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 0
   _isRootPrefabView: 0
   _components:
   - componentID: 1
@@ -18559,6 +18559,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 221990294691017864, guid: 6bcaa305537954ee0b3eee4495fff324,
+        type: 3}
+      propertyPath: _sceneViewDestroyWhenOwnerOrLastClientLeaves
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 617162041199996880, guid: 6bcaa305537954ee0b3eee4495fff324,
         type: 3}
       propertyPath: endstop
@@ -18608,6 +18613,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 859809231483335467, guid: 6bcaa305537954ee0b3eee4495fff324,
+        type: 3}
+      propertyPath: _sceneViewDestroyWhenOwnerOrLastClientLeaves
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1148796008829201907, guid: 6bcaa305537954ee0b3eee4495fff324,
         type: 3}
@@ -18834,6 +18844,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3260875424143532103, guid: 6bcaa305537954ee0b3eee4495fff324,
+        type: 3}
+      propertyPath: _sceneViewDestroyWhenOwnerOrLastClientLeaves
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3471799133547622276, guid: 6bcaa305537954ee0b3eee4495fff324,
         type: 3}
       propertyPath: m_UseGravity
@@ -18909,6 +18924,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3909429241458896549, guid: 6bcaa305537954ee0b3eee4495fff324,
+        type: 3}
+      propertyPath: _sceneViewDestroyWhenOwnerOrLastClientLeaves
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3937932648630322117, guid: 6bcaa305537954ee0b3eee4495fff324,
         type: 3}
       propertyPath: m_Mesh
@@ -18979,6 +18999,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5262433140891833522, guid: 6bcaa305537954ee0b3eee4495fff324,
+        type: 3}
+      propertyPath: _sceneViewDestroyWhenOwnerOrLastClientLeaves
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5516463059874418196, guid: 6bcaa305537954ee0b3eee4495fff324,
         type: 3}
       propertyPath: m_Mesh
@@ -19033,6 +19058,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6937582527118450993, guid: 6bcaa305537954ee0b3eee4495fff324,
+        type: 3}
+      propertyPath: _sceneViewDestroyWhenOwnerOrLastClientLeaves
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6955044638499594189, guid: 6bcaa305537954ee0b3eee4495fff324,
         type: 3}
@@ -19089,6 +19119,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7382910446719003901, guid: 6bcaa305537954ee0b3eee4495fff324,
+        type: 3}
+      propertyPath: _sceneViewDestroyWhenOwnerOrLastClientLeaves
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7609994938467832629, guid: 6bcaa305537954ee0b3eee4495fff324,
         type: 3}
       propertyPath: m_Enabled
@@ -19128,6 +19163,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972571777080581311, guid: 6bcaa305537954ee0b3eee4495fff324,
+        type: 3}
+      propertyPath: _sceneViewDestroyWhenOwnerOrLastClientLeaves
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8000505021829084350, guid: 6bcaa305537954ee0b3eee4495fff324,
         type: 3}
@@ -20102,46 +20142,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1976300978}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2050987761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050987760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -363599832, guid: 30f4fd177e1fad742be136a8237ab587, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _realtime: {fileID: 607719074}
-  _sceneViewUUID: 
-  _viewUUID: 46ca8a57-8897-41bf-a206-66e4b143ba80
-  _sceneViewPreventOwnershipTakeover: 0
-  _sceneViewDestroyWhenOwnerOrLastClientLeaves: 1
-  _isRootPrefabView: 0
-  _components:
-  - componentID: 1
-    component: {fileID: 2050987762}
-  _childViews: []
---- !u!114 &2050987762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050987760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1029778088, guid: 30f4fd177e1fad742be136a8237ab587, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolate: 1
-  _syncPosition: 1
-  _syncRotation: 1
-  _syncScale: 1
-  _syncVelocity: 1
-  _maintainOwnershipWhileSleeping: 0
 --- !u!1001 &2053426216
 PrefabInstance:
   m_ObjectHideFlags: 0
