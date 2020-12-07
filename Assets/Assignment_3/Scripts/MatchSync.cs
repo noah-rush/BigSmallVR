@@ -23,7 +23,7 @@ public class MatchSync : RealtimeComponent<MatchSyncModel> {
                 currentModel.lit = _matchClass.isLit();
         
             // Update the mesh render to match the new model
-            UpdateMatchLit();
+            // UpdateMatchLit();
 
             // Register for events so we'll know if the color changes later
             currentModel.litDidChange += litDidChange;

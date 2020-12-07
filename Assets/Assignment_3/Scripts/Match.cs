@@ -12,8 +12,9 @@ public class Match : MonoBehaviour
     PlayerSizingContinuous grabbingPlayer;
     bool collided = false;
     Vector3 swipeStart;
-
+    
     private MatchSync _matchSync;
+
     void Start()
     {
         matchParent = transform.parent;
