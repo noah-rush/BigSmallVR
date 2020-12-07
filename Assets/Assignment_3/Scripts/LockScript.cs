@@ -19,10 +19,12 @@ public class LockScript : MonoBehaviour
         if (other.gameObject.name == "Unlocker" || other.tag == "key")
             //if (other.tag == "key")
         {
-            //Rigidbody rb = jailDoor.GetComponent<Rigidbody>();
-            //rb.isKinematic = true;
-            Destroy(gameObject);
-            //jailDoor.transform.position = jailDoorStartPos + new Vector3(0, 8, 0);
+            //Destroy(gameObject);
+            RealtimeTransform jailDoorTransform = jailDoor.GetComponent<RealtimeTransform>();
+            jailDoorTransform.RequestOwnership();
+            Rigidbody rb = jailDoor.GetComponent<Rigidbody>();
+            rb.useGravity = false;
+            jailDoor.transform.position = jailDoorStartPos + new Vector3(0, 8, 0);
 
             //Realtime.Destroy(jailDoor);
         }
