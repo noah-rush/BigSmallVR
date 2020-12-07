@@ -66,7 +66,8 @@ public class GrabbableSizing : MonoBehaviour
     {
         // grabbingPlayer could come back null
         PlayerSizingContinuous grabbingPlayer = grabbable.grabbedBy.GetComponentInParent<PlayerSizingContinuous>();
-        if(grabbingPlayer.scaleFactor < playerScaleRequired)
+        //if(grabbingPlayer.scaleFactor < playerScaleRequired)
+        if (grabbingPlayer.GetComponentInParent<Collider>().bounds.size.y < GetComponentInParent<Collider>().bounds.size.y * playerScaleRequired)
         {
             grabbable.grabbedBy.ForceRelease(grabbable);
         }
