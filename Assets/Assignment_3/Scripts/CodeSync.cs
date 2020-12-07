@@ -26,7 +26,7 @@ public class CodeSync : RealtimeComponent<CodeSyncModel>
         {
             // If this is a model that has no data set on it, populate it with the current mesh renderer color.
             if (currentModel.isFreshModel)
-                currentModel.activated = _codeBox.isActive();
+                currentModel.activated = _codeBox.isReady();
 
 
             // Update the mesh render to match the new model
@@ -50,14 +50,18 @@ public class CodeSync : RealtimeComponent<CodeSyncModel>
     {
         // Get the color from the model and set it on the mesh renderer.
       
-            _codeBox.setActivation(model.activated);
+            _codeBox.setReady(model.activated);
       
        
     }
  
-    public void SetActivation(bool value)
+    public void ready()
     {
-        model.activated = value;
+        model.activated = true;
+    }
+    public void notReady()
+    {
+        model.activated = false;
     }
  
 }
