@@ -16,6 +16,7 @@ public class CodeKey : MonoBehaviour
     private string number;
     CodeBox codeBox;
     TMP_Text entryPanel;
+    public bool clear;
 
     private RealtimeTransform _realtimeTransform;
     // _realtimeTransform = GetComponent<RealtimeTransform>();
@@ -42,7 +43,16 @@ public class CodeKey : MonoBehaviour
             // codeBox.addToKeyCode(number)
             StartCoroutine("buttonReset");
             endPos = Location.position;
-            codeBox.addToKeyCode(number);
+            if(clear)
+            {
+                codeBox.clearCode();
+
+            }
+            else
+            {
+                codeBox.addToKeyCode(number);
+
+            }
 
             // StartCoroutine("buttonReset");
 

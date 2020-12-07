@@ -50,7 +50,7 @@ public class CodeSync : RealtimeComponent<CodeSyncModel>
     {
         // Get the color from the model and set it on the mesh renderer.
       
-            _codeBox.setActivate(model.activated);
+            _codeBox.setActivation(model.activated);
       
        
     }
