@@ -25,6 +25,11 @@ public class SlingshotBullet : MonoBehaviour
     }
 
     // Update is called once per frame
+    IEnumerator DestroyBullet(){
+        yield return new WaitForSeconds(lifeSpan);
+        Realtime.Destroy(gameObject); 
+
+    }
     void Update()
     {
         OVRInput.SetControllerVibration(1, 0, OVRInput.Controller.LTouch);
@@ -41,7 +46,8 @@ public class SlingshotBullet : MonoBehaviour
                     Rigidbody rb = GetComponent<Rigidbody>();
                     rb.mass = slingshot.scaleFactor;
                     rb.AddForce((slingshotTip.position - transform.position) * launchForce, ForceMode.Impulse);
-                    Realtime.Destroy(gameObject, lifeSpan); 
+                    StartCoroutine("DestroyBullet");
+                    // Realtime.Destroy(gameObject, lifeSpan); 
 
                 }
                 else // else move the ball with the players hand
