@@ -42,7 +42,7 @@ public class CodeBox : MonoBehaviour
     }
     public void activate()
     {
-
+        activated = true;
         _codeSync.SetActivation(true);
     }
      public void deactivate()
@@ -50,21 +50,7 @@ public class CodeBox : MonoBehaviour
         activated = false;
         _codeSync.SetActivation(false);
     }
-    public void activateFromModel(bool value)
-    {
-        activated = value;
-        var cubeRenderer = ColorPlane.GetComponent<Renderer>();
-
-        if(activated)
-        {
-            cubeRenderer.material.SetColor("_TintColor", Color.green);
-        }
-        else
-        {
-            cubeRenderer.material.SetColor("_TintColor", Color.red);
-
-        }
-    }
+ 
    
 
     void Start()
@@ -82,7 +68,16 @@ public class CodeBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var cubeRenderer = ColorPlane.GetComponent<Renderer>();
 
+        if(activated)
+        {
+            cubeRenderer.material.SetColor("_TintColor", Color.green);
+        }
+        else
+        {
+            cubeRenderer.material.SetColor("_TintColor", Color.red);
+        }
         // m_TextComponent.text = keycode;
         if(keycode == answer && activated)
         {
@@ -98,7 +93,6 @@ public class CodeBox : MonoBehaviour
         if(keycode == "")
         {
             StartCoroutine("Resetter");
-
         }
         keycode = keycode + number;
         m_TextComponent.text = keycode;
