@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Normal.Realtime;
 
 public class CodeKey : MonoBehaviour
 {
@@ -15,9 +16,15 @@ public class CodeKey : MonoBehaviour
     private string number;
     CodeBox codeBox;
     TMP_Text entryPanel;
+
+    private RealtimeTransform _realtimeTransform;
+    // _realtimeTransform = GetComponent<RealtimeTransform>();
+
     // Start is called before the first frame update
     void Start()
     {
+        _realtimeTransform = GetComponent<RealtimeTransform>();
+
         Location = transform;
         StartPos = Location.position;
         number = transform.GetChild(0).GetComponent<TMP_Text>().text;
@@ -55,6 +62,11 @@ public class CodeKey : MonoBehaviour
         Pressed = false;
         GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionZ; //Remove Y movement constraint.
 
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+            _realtimeTransform.RequestOwnership();
+        
     }
 
 
