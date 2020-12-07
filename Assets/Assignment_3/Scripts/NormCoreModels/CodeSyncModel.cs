@@ -6,7 +6,7 @@ using Normal.Realtime.Serialization;
 
 [RealtimeModel]
 public partial class CodeSyncModel {
-    [RealtimeProperty(1, true, true)]
+    [RealtimeProperty(4, true, true)]
     private bool _activated;
 }
 
