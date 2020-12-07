@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Normal.Realtime;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,7 +41,7 @@ public class SlingshotBullet : MonoBehaviour
                     Rigidbody rb = GetComponent<Rigidbody>();
                     rb.mass = slingshot.scaleFactor;
                     rb.AddForce((slingshotTip.position - transform.position) * launchForce, ForceMode.Impulse);
-                    Destroy(gameObject, lifeSpan); 
+                    Realtime.Destroy(gameObject, lifeSpan); 
 
                 }
                 else // else move the ball with the players hand
