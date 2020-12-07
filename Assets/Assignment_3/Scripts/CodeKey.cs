@@ -53,6 +53,9 @@ public class CodeKey : MonoBehaviour
     }
     IEnumerator buttonReset()
     {
+        _realtimeTransform.RequestOwnership();
+        GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionZ; //Remove Y movement constraint.
+        
         yield return new WaitForSeconds(.4f);
         for (float ft = 0f; ft <= 1f; ft += 0.01f)
         {
@@ -60,7 +63,7 @@ public class CodeKey : MonoBehaviour
             yield return new WaitForSeconds(.005f);
         }
         Pressed = false;
-        GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionZ; //Remove Y movement constraint.
+        // GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionZ; //Remove Y movement constraint.
 
     }
     void OnCollisionEnter(Collision collision)

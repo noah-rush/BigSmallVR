@@ -20,12 +20,30 @@ public class CodeBox : MonoBehaviour
 
     // private RealtimeView _doorRealtime;
     private RealtimeTransform _doorTransform;
+    private CodeSync _codeSync;
+
+    public string getKeycode(){
+        return keycode;
+    }
+    public bool isActive(){
+        return activated;
+    }
+    public void setKeycode(string code){
+        if(keycode == "")
+        {
+            StartCoroutine("Resetter");
+
+        }
+        keycode = code;
+        m_TextComponent.text = code;
+    }
     public void activate()
     {
 
         activated = true;
         var cubeRenderer = ColorPlane.GetComponent<Renderer>();
         cubeRenderer.material.SetColor("_TintColor", Color.green);
+        _codeSync.SetActivation(true);
         // ColorPlane.GetComponent<BoxCo÷÷llider>().enabled = false;
     }
     public void deactivate()
@@ -33,11 +51,14 @@ public class CodeBox : MonoBehaviour
         activated = false;
         var cubeRenderer = ColorPlane.GetComponent<Renderer>();
         cubeRenderer.material.SetColor("_TintColor", Color.red);
+        _codeSync.SetActivation(false);
+        
         // ColorPlane.GetComponent<BoxCollider>().enabled = true;
 
     }
     void Start()
     {
+        _codeSync = GetComponent<CodeSync>();
         keycode = "";
         _doorTransform = door.GetComponent<RealtimeTransform>();
 
@@ -70,7 +91,7 @@ public class CodeBox : MonoBehaviour
         }
         keycode = keycode + number;
         m_TextComponent.text = keycode;
-
+        _codeSync.SetKeycode(keycode);
 
     }
 
