@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Normal.Realtime;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +20,9 @@ public class LockScript : MonoBehaviour
         {
             //Rigidbody rb = jailDoor.GetComponent<Rigidbody>();
             //rb.isKinematic = true;
-            jailDoor.transform.position = jailDoorStartPos + new Vector3(0, 8, 0);
+            //jailDoor.transform.position = jailDoorStartPos + new Vector3(0, 8, 0);
+
+            Realtime.Destroy(jailDoor);
         }
     }
     // Update is called once per frame
