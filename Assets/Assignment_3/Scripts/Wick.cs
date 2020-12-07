@@ -30,7 +30,7 @@ public class Wick : MonoBehaviour
 
         if(OVRInput.GetUp(OVRInput.RawButton.X)){
             codeLock.GetComponent<CodeBox>().activate();
-            StartCoroutine("showCodeLock");
+            // StartCoroutine("showCodeLock");
         }
 
     }
@@ -44,21 +44,21 @@ public class Wick : MonoBehaviour
             {
                 // _codeLockTransform.RequestOwnership();
                 codeLock.GetComponent<CodeBox>().activate();
-                StartCoroutine("showCodeLock");
+                // StartCoroutine("showCodeLock");
             
                 
             }
         }
 
     }
-    IEnumerator showCodeLock(){
-        yield return new WaitForSeconds(30.0f);
-        this.transform.GetChild(0).gameObject.SetActive(false);
-        lit = false;
-        codeLock.GetComponent<CodeBox>().deactivate();
+    // IEnumerator showCodeLock(){
+    //     yield return new WaitForSeconds(10.0f);
+    //     this.transform.GetChild(0).gameObject.SetActive(false);
+    //     lit = false;
+    //     codeLock.GetComponent<CodeBox>().deactivate();
 
-        // _codeLockTransform.RequestOwnership();
-         // codeLock.transform.GetChild(0).gameObject.SetActive(false);
+    //     // _codeLockTransform.RequestOwnership();
+    //      // codeLock.transform.GetChild(0).gameObject.SetActive(false);
         
-    }
+    // }
 }

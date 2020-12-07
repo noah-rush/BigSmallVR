@@ -93,10 +93,11 @@ public class CodeBox : MonoBehaviour
         if(keycode == "")
         {
             StartCoroutine("Resetter");
+
         }
         keycode = keycode + number;
         m_TextComponent.text = keycode;
-        _codeSync.SetKeycode(keycode);
+        // _codeSync.SetKeycode(keycode);
 
     }
 
