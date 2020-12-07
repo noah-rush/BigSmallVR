@@ -11,7 +11,7 @@ public class CodeBox : MonoBehaviour
     public GameObject entrypanel;
     private TMP_Text m_TextComponent;
 
-    [SerializeField]
+    // [SerializeField]
     GameObject door;
 
     bool ready = false;
@@ -19,33 +19,25 @@ public class CodeBox : MonoBehaviour
     public GameObject ColorPlane;
 
     private RealtimeTransform _doorTransform;
-    private CodeSync _codeSync;
+    // private CodeSync _codeSync;
 
 
     
     void Start()
     {
-        _codeSync = GetComponent<CodeSync>();
+        // _codeSync = GetComponent<CodeSync>();
         keycode = "";
-        _doorTransform = door.GetComponent<RealtimeTransform>();
+        door = GameObject.FindWithTag("door");
+        _doorTransform = GameObject.FindWithTag("door").GetComponent<RealtimeTransform>();
         m_TextComponent = entrypanel.GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        var cubeRenderer = ColorPlane.GetComponent<Renderer>();
-
-        if(ready)
-        {
-            cubeRenderer.material.SetColor("_TintColor", Color.green);
-        }
-        else
-        {
-            cubeRenderer.material.SetColor("_TintColor", Color.red);
-        }
+   
         // m_TextComponent.text = keycode;
-        if(keycode == answer && ready)
+        if(keycode == answer )
         {
             _doorTransform.RequestOwnership();
             StartCoroutine("OpenDoor");
@@ -72,12 +64,12 @@ public class CodeBox : MonoBehaviour
     public void activate()
     {
         ready = true;
-        _codeSync.ready();
+        // _codeSync.ready();
     }
      public void deactivate()
     {
         ready = false;
-        _codeSync.notReady();
+        // _codeSync.notReady();
     }
     public void setReady(bool val){
         ready = val;

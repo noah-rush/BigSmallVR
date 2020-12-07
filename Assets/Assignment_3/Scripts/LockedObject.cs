@@ -30,20 +30,29 @@ public class LockedObject : MonoBehaviour
         if(grabbable.isGrabbed)
         {
             grabbingPlayer = grabbable.grabbedBy.GetComponentInParent<PlayerSizingContinuous>();
-            grabbingPlayer.vibrateRightHand = true;
-            grabbingPlayer.vibratePower = transform.position.y - 0.9f;
+            if (grabbable.grabbedBy.gameObject.name == "DistanceGrabHandLeft")
+            {
+                grabbingPlayer.vibrateLeftHand = true;
+                grabbingPlayer.vibratePower = transform.position.y - 0.9f;
+            }
+            else
+            {
+                grabbingPlayer.vibrateRightHand = true;
+                grabbingPlayer.vibratePower = transform.position.y - 0.9f;
+            }
             if (changeColorOnGrab) gameObject.GetComponent<Renderer> ().material.color = Color.green;
         }
         else
         {
             if (changeColorOnGrab) gameObject.GetComponent<Renderer> ().material.color = Color.red;
             grabbingPlayer.vibrateRightHand = false;
- 
- 
+            grabbingPlayer.vibrateLeftHand = false;
+
+
         }
 
     }
-   
+
 
     void LateUpdate()
     {

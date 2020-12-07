@@ -18,6 +18,6 @@ public class InstantiateGrabbableObjects : MonoBehaviour
                              rotation: Quaternion.identity, // No rotation
                              ownedByClient: false,   // Make sure the RealtimeView on this prefab is NOT owned by this client
                              preventOwnershipTakeover: false,                // DO NOT prevent other clients from calling RequestOwnership() on the root RealtimeView.
-                             useInstance: _realtime);           // Use the instance of Realtime that fired the didConnectToRoom event.
+                             useInstance: _realtime); 
     }
 }

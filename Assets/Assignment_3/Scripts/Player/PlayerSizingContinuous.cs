@@ -103,6 +103,8 @@ public class PlayerSizingContinuous : MonoBehaviour
                     else
                     {
                         OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
+                        OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.LTouch);
+
                         // OVRInput.SetControllerVibration(1, 1, OVRInput.Controller.RTouch);
 
                     }
@@ -116,6 +118,8 @@ public class PlayerSizingContinuous : MonoBehaviour
     {
         // Clear Haptics
         OVRInput.SetControllerVibration(1, 0, OVRInput.Controller.RTouch);
+        OVRInput.SetControllerVibration(1, 0, OVRInput.Controller.LTouch);
+
         ReadjustHeadCamera();
         ResizePlayer();
         if(vibrateRightHand)
