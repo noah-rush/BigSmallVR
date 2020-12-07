@@ -31,7 +31,7 @@ public class CodeSync : RealtimeComponent<CodeSyncModel>
 
             // Update the mesh render to match the new model
             // UpdateMatchLit();
-            UpdateActivation();
+            // UpdateActivation();
 
 
             // Register for events so we'll know if the color changes later
@@ -49,15 +49,10 @@ public class CodeSync : RealtimeComponent<CodeSyncModel>
     private void UpdateActivation()
     {
         // Get the color from the model and set it on the mesh renderer.
-        if(model.activated)
-        {
-            _codeBox.activate();
-        }
-        else
-        {
-            _codeBox.deactivate();
-
-        }
+      
+            _codeBox.setActivate(model.activated);
+      
+       
     }
  
     public void SetActivation(bool value)
