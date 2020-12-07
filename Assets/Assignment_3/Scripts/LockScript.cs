@@ -16,13 +16,15 @@ public class LockScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "key")
+        if (other.gameObject.name == "Unlocker" || other.tag == "key")
+            //if (other.tag == "key")
         {
             //Rigidbody rb = jailDoor.GetComponent<Rigidbody>();
             //rb.isKinematic = true;
+            Destroy(gameObject);
             //jailDoor.transform.position = jailDoorStartPos + new Vector3(0, 8, 0);
 
-            Realtime.Destroy(jailDoor);
+            //Realtime.Destroy(jailDoor);
         }
     }
     // Update is called once per frame
