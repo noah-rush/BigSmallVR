@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CodeKey : MonoBehaviour
 {
@@ -11,12 +12,16 @@ public class CodeKey : MonoBehaviour
     private Transform Location;
     private Vector3 StartPos;
     private Vector3 endPos;
-
+    private string number;
+    CodeBox codeBox;
+    TMP_Text entryPanel;
     // Start is called before the first frame update
     void Start()
     {
         Location = transform;
         StartPos = Location.position;
+        number = transform.GetChild(0).GetComponent<TMP_Text>().text;
+        codeBox = transform.parent.gameObject.GetComponent<CodeBox>();
     }
     void Update()
     {
@@ -26,6 +31,7 @@ public class CodeKey : MonoBehaviour
             // Location.position = new Vector3(Location.position.x, Location.position.y, endstop + StartPos.z);
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             Pressed = true;//update pressed
+            codeBox.addToKeyCode(number);
             endPos = Location.position;
             StartCoroutine("buttonReset");
 
@@ -37,16 +43,6 @@ public class CodeKey : MonoBehaviour
 
 
     }
-    // void OnCollisionExit(Collision collision)//check for when to unlock the button
-    // {
-    //     Debug.Log("unlock");
-    //     if (collision.gameObject.name != "CodeBox")
-    //     {
-    //         GetComponent<Rigidbody>().constraints &= ~RigidbodyConstraints.FreezePositionZ; //Remove Y movement constraint.
-    //         Pressed = false;//update pressed
-    //         StartCoroutine("buttonReset");
-    //     }
-    // }
     IEnumerator buttonReset()
     {
         yield return new WaitForSeconds(.4f);
