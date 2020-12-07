@@ -28,6 +28,11 @@ public class Wick : MonoBehaviour
     void Update()
     {
 
+        if(OVRInput.GetUp(OVRInput.RawButton.X)){
+            codeLock.GetComponent<CodeBox>().activate();
+            StartCoroutine("showCodeLock");
+        }
+
     }
     void OnTriggerEnter(Collider other)
     {
