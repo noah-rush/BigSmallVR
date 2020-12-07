@@ -11587,6 +11587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dogDoor: {fileID: 0}
+
   endstop: 0.1
   Pressed: 0
 --- !u!54 &1232757735
