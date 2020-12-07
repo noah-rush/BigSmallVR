@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Normal.Realtime;
 
 public class DogDoorButton : MonoBehaviour
 {
-    public HingeJoint dogDoorHinge;
+    public GameObject dogDoor;
 
     public float endstop;//how far down you want the button to be pressed before it triggers
     public bool Pressed = false;
@@ -34,6 +35,9 @@ public class DogDoorButton : MonoBehaviour
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             Pressed = true;//update pressed
             //codeBox.addToKeyCode(number);
+            RealtimeTransform dogDoorTransform = dogDoor.GetComponent<RealtimeTransform>();
+            dogDoorTransform.RequestOwnership();
+            HingeJoint dogDoorHinge = dogDoor.GetComponent<HingeJoint>();
             dogDoorHinge.useSpring = true;
             endPos = Location.position;
             StartCoroutine("buttonReset");
