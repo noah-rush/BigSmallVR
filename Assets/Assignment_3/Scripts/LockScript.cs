@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class LockScript : MonoBehaviour
 {
+    [SerializeField]
     GameObject jailDoor;
     Vector3 jailDoorStartPos;
     // Start is called before the first frame update
     void Start()
     {
-        jailDoor = GameObject.Find("Jail Door");
         jailDoorStartPos = jailDoor.transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "key")
+        if(other.tag == "key")
         {
             //Rigidbody rb = jailDoor.GetComponent<Rigidbody>();
             //rb.isKinematic = true;
