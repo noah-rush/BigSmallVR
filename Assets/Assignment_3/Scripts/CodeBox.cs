@@ -50,6 +50,10 @@ public class CodeBox : MonoBehaviour
         activated = false;
         _codeSync.SetActivation(false);
     }
+    public void setActivate(bool value){
+        activated = value;
+
+    }
  
    
 
