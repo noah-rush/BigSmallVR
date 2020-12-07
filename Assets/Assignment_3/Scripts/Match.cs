@@ -12,10 +12,13 @@ public class Match : MonoBehaviour
     PlayerSizingContinuous grabbingPlayer;
     bool collided = false;
     Vector3 swipeStart;
+
+    private MatchSync _matchSync;
     void Start()
     {
         matchParent = transform.parent;
         grabbable = matchParent.gameObject.GetComponent<OVRGrabbable>();
+        _matchSync = GetComponent<MatchSync>();
     }
 
     // Update is called once per frame
@@ -62,6 +65,7 @@ public class Match : MonoBehaviour
                 lit = true;
                 matchParent.transform.GetChild(1).gameObject.SetActive(true);
                 StartCoroutine("litMatch");
+                _matchSync.SetMatch();
                 
             }
         }
@@ -71,6 +75,11 @@ public class Match : MonoBehaviour
         lit = false;
         matchParent.transform.GetChild(1).gameObject.SetActive(false);
         // StartCoroutine(ExampleCoroutine());
+    }
+    public void light(){
+        lit = true;
+        matchParent.transform.GetChild(1).gameObject.SetActive(true);
+        StartCoroutine("litMatch");
     }
 
 
