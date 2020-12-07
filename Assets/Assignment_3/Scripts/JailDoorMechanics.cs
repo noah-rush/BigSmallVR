@@ -9,6 +9,7 @@ public class JailDoorMechanics : MonoBehaviour
     GameObject jailDoor;
     Vector3 startPos, jailDoorStartPos;
     float heightDiff = 0f;
+    OVRGrabbable grabbable;
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +18,16 @@ public class JailDoorMechanics : MonoBehaviour
 
         startPos = transform.position;
         jailDoorStartPos = jailDoor.transform.position;
+        grabbable = GetComponent<OVRGrabbable>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        heightDiff = transform.position.y - startPos.y;
-        jailDoor.transform.position = jailDoorStartPos + new Vector3(0, heightDiff/3, 0);
+        if (grabbable.isGrabbed)
+        {
+            heightDiff = transform.position.y - startPos.y;
+            jailDoor.transform.position = jailDoorStartPos + new Vector3(0, heightDiff / 3, 0);
+        }
     }
 }
