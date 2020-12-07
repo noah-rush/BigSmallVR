@@ -11634,7 +11634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675c3cf45b1c6024f981c3bd9a571463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dogDoorHinge: {fileID: 1927447999}
+  dogDoor: {fileID: 1927447994}
   endstop: 0.1
   Pressed: 0
 --- !u!54 &1232757735
@@ -11740,7 +11740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675c3cf45b1c6024f981c3bd9a571463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dogDoorHinge: {fileID: 0}
+  dogDoor: {fileID: 0}
   endstop: 0.1
   Pressed: 0
 --- !u!1 &1259036800
