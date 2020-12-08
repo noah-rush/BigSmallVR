@@ -8,10 +8,14 @@ public class LockScript : MonoBehaviour
     [SerializeField]
     GameObject jailDoor;
     Vector3 jailDoorStartPos;
+    Vector3 destinationPos;
+    bool moveUp;
     // Start is called before the first frame update
     void Start()
     {
         jailDoorStartPos = jailDoor.transform.position;
+        destinationPos = jailDoorStartPos + new Vector3(0, 8, 0);
+        moveUp = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +28,7 @@ public class LockScript : MonoBehaviour
             jailDoorTransform.RequestOwnership();
             Rigidbody rb = jailDoor.GetComponent<Rigidbody>();
             rb.useGravity = false;
-            jailDoor.transform.position = jailDoorStartPos + new Vector3(0, 8, 0);
+            moveUp = true;
 
             //Realtime.Destroy(jailDoor);
         }
@@ -32,6 +36,9 @@ public class LockScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(moveUp)
+        {
+            jailDoor.transform.position = Vector3.Lerp(jailDoor.transform.position, destinationPos, Time.deltaTime * 5);
+        }
     }
 }
