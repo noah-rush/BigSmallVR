@@ -8,9 +8,13 @@ public class Book : MonoBehaviour
     // Start is called before the first frame update
     OVRGrabbable grabbable;
     // boolean open = false;
+    // [SerializeField]
+    // GameObject controllerHelp1, controllerHelp2;
+
     Transform axis;
     private RealtimeView _axisRealtime;
     private RealtimeTransform _axisTransform;
+    // bool bookHelp = true;
 
 
     void Start()
@@ -19,7 +23,7 @@ public class Book : MonoBehaviour
         grabbable = gameObject.GetComponent<OVRGrabbable>();
         _axisRealtime = axis.gameObject.GetComponent<RealtimeView>();
         _axisTransform = axis.gameObject.GetComponent<RealtimeTransform>();
-
+        
     }
 
     // Update is called once per frame
@@ -27,11 +31,18 @@ public class Book : MonoBehaviour
     {
 
         // OVRInput.Get(OVRInput.RawButton.LIndexTrigger);
-        if (grabbable.isGrabbed)
+        // if( bookHelp && grabbable.isGrabbed ){
+        //     controllerHelp1.SetActive(true);
+        //     controllerHelp2.SetActive(true);
+        //     bookHelp = false;
+        // }
+        if (grabbable.isGrabbed )
         {
+
             _axisTransform.RequestOwnership();
             axis.eulerAngles = new Vector3(axis.rotation.eulerAngles.x, axis.rotation.eulerAngles.y,  axis.rotation.eulerAngles.z - OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger));
             axis.eulerAngles = new Vector3(axis.rotation.eulerAngles.x, axis.rotation.eulerAngles.y,  axis.rotation.eulerAngles.z + OVRInput.Get(OVRInput.RawAxis1D.LIndexTrigger));
+            
         }
     }
 }

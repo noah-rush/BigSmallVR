@@ -19,20 +19,21 @@ public class Wick : MonoBehaviour
     {
         // _codeLockRealtime = codeLock.GetComponent<RealtimeView>();
         // _codeLockTransform = codeLock.GetComponent<RealtimeTransform>();
-        
+
         // codeLock = GameObject.Find("CodeLock");
         // codeLockPosition = new Vector3(-6.75f, 10.95f, -14.33f);
-            if(tunnelCandle){
-        
-        book.SetActive(false);
-    }
+        if(tunnelCandle)
+        {
+
+            book.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
 
-    
+
 
     }
     void OnTriggerEnter(Collider other)
@@ -49,8 +50,8 @@ public class Wick : MonoBehaviour
                 // codeLock.GetComponent<CodeBox>().activate();
                 // StartCoroutine("showCodeLock");
                 book.SetActive(true);
-            
-                
+
+
             }
         }
 
@@ -63,6 +64,6 @@ public class Wick : MonoBehaviour
 
     //     // _codeLockTransform.RequestOwnership();
     //      // codeLock.transform.GetChild(0).gameObject.SetActive(false);
-        
+
     // }
 }
