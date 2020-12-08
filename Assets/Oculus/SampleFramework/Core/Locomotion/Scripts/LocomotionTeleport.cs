@@ -323,6 +323,7 @@ public class LocomotionTeleport : MonoBehaviour
 					start + new Vector3(0, h, 0), r, direction,
 					out hitInfo, distance, aimCollisionLayerMask, QueryTriggerInteraction.Ignore);
 				int otherLayers = ~aimCollisionLayerMask.value;
+					otherLayers = otherLayers - LayerMask.GetMask("Grabbable");
 				RaycastHit otherLayersHit;
 				//bool hitOtherLayer = Physics.Raycast(start, direction, out otherLayersHit, distance, otherLayers, QueryTriggerInteraction.Ignore);
 				bool hitOtherLayer = Physics.CapsuleCast(start + new Vector3(0, 0, 0),
