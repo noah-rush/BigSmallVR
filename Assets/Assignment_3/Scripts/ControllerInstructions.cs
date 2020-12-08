@@ -32,4 +32,15 @@ public class ControllerInstructions : MonoBehaviour
             }
         }
     }
+
+
+    public void ShowBookHelp()
+    {
+        if (bookHelp) return;
+        controllerInOtherHand.SetActive(true);
+        controllerInOtherHand.GetComponent<ControllerBehavior>().ShowBookText();
+        controllerInHand.SetActive(true);
+        controllerInHand.GetComponent<ControllerBehavior>().ShowBookText();
+        bookHelp = true;
+    }
 }

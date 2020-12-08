@@ -22,8 +22,14 @@ public class ControllerBehavior : MonoBehaviour
         if (timer > timeToLive)
         {
             gameObject.SetActive(false);
+            GetComponentInChildren<TextMeshPro>().gameObject.SetActive(false);
             timer = 0f;
         }
 
+    }
+
+    public void ShowBookText()
+    {
+        GetComponentInChildren<TextMeshPro>().gameObject.SetActive(true);
     }
 }
