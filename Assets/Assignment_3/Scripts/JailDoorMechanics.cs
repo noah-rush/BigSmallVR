@@ -24,9 +24,10 @@ public class JailDoorMechanics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (grabbable.isGrabbed)
+
+        heightDiff = transform.position.y - startPos.y;
+        if(heightDiff > 0)
         {
-            heightDiff = transform.position.y - startPos.y;
             jailDoor.transform.position = jailDoorStartPos + new Vector3(0, heightDiff / 3, 0);
         }
     }
