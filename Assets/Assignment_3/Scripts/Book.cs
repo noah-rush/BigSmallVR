@@ -29,20 +29,13 @@ public class Book : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // OVRInput.Get(OVRInput.RawButton.LIndexTrigger);
-        // if( bookHelp && grabbable.isGrabbed ){
-        //     controllerHelp1.SetActive(true);
-        //     controllerHelp2.SetActive(true);
-        //     bookHelp = false;
-        // }
         if (grabbable.isGrabbed )
         {
-
             _axisTransform.RequestOwnership();
             axis.eulerAngles = new Vector3(axis.rotation.eulerAngles.x, axis.rotation.eulerAngles.y,  axis.rotation.eulerAngles.z - OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger));
             axis.eulerAngles = new Vector3(axis.rotation.eulerAngles.x, axis.rotation.eulerAngles.y,  axis.rotation.eulerAngles.z + OVRInput.Get(OVRInput.RawAxis1D.LIndexTrigger));
-            
+
+            grabbable.grabbedBy.gameObject.GetComponent<ControllerInstructions>().ShowBookHelp();
         }
     }
 }

@@ -7,19 +7,16 @@ public class ControllerInstructions : MonoBehaviour
 {
     [SerializeField]
     GameObject controllerInHand, controllerInOtherHand;
-    [SerializeField]
-    GameObject bookHelp1, bookHelp2;
 
-    OVRGrabber thisHand;
     OVRGrabbable slingshot;
     bool slingshotHelp = true;
-    bool bookHelp = true;
+    bool bookHelp = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        thisHand = GetComponent<OVRGrabber>();
+        //thisHand = GetComponent<OVRGrabber>();
         slingshot = GameObject.Find("Slingshot").GetComponent<OVRGrabbable>();
     }
 
@@ -35,17 +32,14 @@ public class ControllerInstructions : MonoBehaviour
                 slingshotHelp = false;
             }
         }
-        if(thisHand.grabbedObject != null){
-        if(thisHand.grabbedObject.gameObject.tag == "Book" && bookHelp){
-                bookHelp1.SetActive(true);
-                bookHelp2.SetActive(true);
-                bookHelp = false;
-        }
     }
 
 
+    public void ShowBookHelp()
+    {
+        if (bookHelp) return;
+        controllerInOtherHand.SetActive(true);
+        controllerInHand.SetActive(true);
+        bookHelp = true;
     }
-
-
-
 }
