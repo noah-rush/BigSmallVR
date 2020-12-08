@@ -12,11 +12,12 @@ public class Match : MonoBehaviour
     PlayerSizingContinuous grabbingPlayer;
     bool collided = false;
     Vector3 swipeStart;
-    
+    AudioSource matchSound;
     private MatchSync _matchSync;
 
     void Start()
     {
+        matchSound = GetComponent<AudioSource>();
         matchParent = transform.parent;
         grabbable = matchParent.gameObject.GetComponent<OVRGrabbable>();
         _matchSync = GetComponent<MatchSync>();
@@ -67,6 +68,7 @@ public class Match : MonoBehaviour
                 matchParent.transform.GetChild(1).gameObject.SetActive(true);
                 StartCoroutine("litMatch");
                 _matchSync.SetMatch();
+                matchSound.Play();
                 
             }
         }
@@ -81,6 +83,8 @@ public class Match : MonoBehaviour
         lit = true;
         matchParent.transform.GetChild(1).gameObject.SetActive(true);
         StartCoroutine("litMatch");
+        matchSound.Play();
+
     }
 
 

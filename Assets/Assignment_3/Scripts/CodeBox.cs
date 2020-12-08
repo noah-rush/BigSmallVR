@@ -21,12 +21,13 @@ public class CodeBox : MonoBehaviour
     private RealtimeTransform _doorTransform;
     // private CodeSync _codeSync;
 
-
+    AudioSource beep;
     
     void Start()
     {
         // _codeSync = GetComponent<CodeSync>();
         keycode = "";
+        beep = GetComponent<AudioSource>();
         door = GameObject.FindWithTag("door");
         _doorTransform = GameObject.FindWithTag("door").GetComponent<RealtimeTransform>();
         m_TextComponent = entrypanel.GetComponent<TMP_Text>();
@@ -54,6 +55,7 @@ public class CodeBox : MonoBehaviour
 
         keycode = keycode + number;
         m_TextComponent.text = keycode;
+        beep.Play();
 
     }
     public bool isReady()

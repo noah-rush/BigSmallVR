@@ -8,6 +8,7 @@ TagManager:
   - RightHand
   - key
   - door
+  - Book
   layers:
   - Default
   - TransparentFX

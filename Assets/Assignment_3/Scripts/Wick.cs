@@ -12,7 +12,7 @@ public class Wick : MonoBehaviour
     GameObject book;
     // private RealtimeView  _codeLockRealtime;
     // private RealtimeTransform _codeLockTransform;
-
+    AudioSource reward;
     Realtime _realtime;
 
     void Start()
@@ -27,6 +27,7 @@ public class Wick : MonoBehaviour
 
             book.SetActive(false);
         }
+        reward = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -50,7 +51,7 @@ public class Wick : MonoBehaviour
                 // codeLock.GetComponent<CodeBox>().activate();
                 // StartCoroutine("showCodeLock");
                 book.SetActive(true);
-
+                reward.Play();
 
             }
         }
