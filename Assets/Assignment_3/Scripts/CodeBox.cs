@@ -55,6 +55,7 @@ public class CodeBox : MonoBehaviour
 
         keycode = keycode + number;
         m_TextComponent.text = keycode;
+        beep.pitch = 1f + float.Parse(number) * 0.1f;
         beep.Play();
 
     }
