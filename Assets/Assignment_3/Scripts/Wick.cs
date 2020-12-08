@@ -9,9 +9,9 @@ public class Wick : MonoBehaviour
     bool lit = false;
     public bool tunnelCandle;
     [SerializeField]
-    GameObject codeLock;
-    private RealtimeView  _codeLockRealtime;
-    private RealtimeTransform _codeLockTransform;
+    GameObject book;
+    // private RealtimeView  _codeLockRealtime;
+    // private RealtimeTransform _codeLockTransform;
 
     Realtime _realtime;
 
@@ -22,16 +22,17 @@ public class Wick : MonoBehaviour
         
         // codeLock = GameObject.Find("CodeLock");
         // codeLockPosition = new Vector3(-6.75f, 10.95f, -14.33f);
+            if(tunnelCandle){
+        
+        book.SetActive(false);
+    }
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if(OVRInput.GetUp(OVRInput.RawButton.X)){
-            codeLock.GetComponent<CodeBox>().activate();
-            // StartCoroutine("showCodeLock");
-        }
+    
 
     }
     void OnTriggerEnter(Collider other)
@@ -43,8 +44,9 @@ public class Wick : MonoBehaviour
             if(tunnelCandle)
             {
                 // _codeLockTransform.RequestOwnership();
-                codeLock.GetComponent<CodeBox>().activate();
+                // codeLock.GetComponent<CodeBox>().activate();
                 // StartCoroutine("showCodeLock");
+                book.SetActive(true);
             
                 
             }
