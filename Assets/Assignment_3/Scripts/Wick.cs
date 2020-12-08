@@ -41,6 +41,8 @@ public class Wick : MonoBehaviour
         {
             this.transform.GetChild(0).gameObject.SetActive(true);
             lit = true;
+            this.transform.GetChild(1).gameObject.SetActive(true);
+
             if(tunnelCandle)
             {
                 // _codeLockTransform.RequestOwnership();
