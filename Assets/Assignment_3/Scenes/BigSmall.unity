@@ -20702,6 +20702,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5187521866341791534, guid: f5564ac30c368441aa274e836ab54243,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187521866341791534, guid: f5564ac30c368441aa274e836ab54243,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187521866341791534, guid: f5564ac30c368441aa274e836ab54243,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.001
+      objectReference: {fileID: 0}
     - target: {fileID: 5380978735177646504, guid: f5564ac30c368441aa274e836ab54243,
         type: 3}
       propertyPath: playerScaleRequired
