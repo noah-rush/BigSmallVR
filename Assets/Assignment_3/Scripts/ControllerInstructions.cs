@@ -16,7 +16,6 @@ public class ControllerInstructions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //thisHand = GetComponent<OVRGrabber>();
         slingshot = GameObject.Find("Slingshot").GetComponent<OVRGrabbable>();
     }
 
@@ -35,11 +34,13 @@ public class ControllerInstructions : MonoBehaviour
     }
 
 
-    public void ShowBookHelp()
+    public void ShowBookHelp(string _name)
     {
         if (bookHelp) return;
         controllerInOtherHand.SetActive(true);
+        controllerInHand.GetComponent<ControllerBehavior>().SetBookTextHelp();
         controllerInHand.SetActive(true);
+        controllerInOtherHand.GetComponent<ControllerBehavior>().SetBookTextHelp();
         bookHelp = true;
     }
 }

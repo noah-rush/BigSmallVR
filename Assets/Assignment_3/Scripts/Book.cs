@@ -35,7 +35,7 @@ public class Book : MonoBehaviour
             axis.eulerAngles = new Vector3(axis.rotation.eulerAngles.x, axis.rotation.eulerAngles.y,  axis.rotation.eulerAngles.z - OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger));
             axis.eulerAngles = new Vector3(axis.rotation.eulerAngles.x, axis.rotation.eulerAngles.y,  axis.rotation.eulerAngles.z + OVRInput.Get(OVRInput.RawAxis1D.LIndexTrigger));
 
-            grabbable.grabbedBy.gameObject.GetComponent<ControllerInstructions>().ShowBookHelp();
+            grabbable.grabbedBy.gameObject.GetComponent<ControllerInstructions>().ShowBookHelp(grabbable.grabbedBy.name);
         }
     }
 }
