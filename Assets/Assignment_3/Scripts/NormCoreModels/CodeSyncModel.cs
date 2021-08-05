@@ -14,11 +14,11 @@ public partial class CodeSyncModel {
 public partial class CodeSyncModel : RealtimeModel {
     public bool activated {
         get {
-            return _cache.LookForValueInCache(_activated, entry => entry.activatedSet, entry => entry.activated);
+            return _activatedProperty.value;
         }
         set {
-            if (this.activated == value) return;
-            _cache.UpdateLocalCache(entry => { entry.activatedSet = true; entry.activated = value; return entry; });
+            if (_activatedProperty.value == value) return;
+            _activatedProperty.value = value;
             InvalidateReliableLength();
             FireActivatedDidChange(value);
         }
@@ -27,25 +27,22 @@ public partial class CodeSyncModel : RealtimeModel {
     public delegate void PropertyChangedHandler<in T>(CodeSyncModel model, T value);
     public event PropertyChangedHandler<bool> activatedDidChange;
     
-    private struct LocalCacheEntry {
-        public bool activatedSet;
-        public bool activated;
-    }
-    
-    private LocalChangeCache<LocalCacheEntry> _cache = new LocalChangeCache<LocalCacheEntry>();
-    
     public enum PropertyID : uint {
-        Activated = 1,
+        Activated = 4,
     }
     
-    public CodeSyncModel() : this(null) {
-    }
+    #region Properties
     
-    public CodeSyncModel(RealtimeModel parent) : base(null, parent) {
+    private ReliableProperty<bool> _activatedProperty;
+    
+    #endregion
+    
+    public CodeSyncModel() : base(null) {
+        _activatedProperty = new ReliableProperty<bool>(4, _activated);
     }
     
     protected override void OnParentReplaced(RealtimeModel previousParent, RealtimeModel currentParent) {
-        UnsubscribeClearCacheCallback();
+        _activatedProperty.UnsubscribeCallback();
     }
     
     private void FireActivatedDidChange(bool value) {
@@ -57,49 +54,25 @@ public partial class CodeSyncModel : RealtimeModel {
     }
     
     protected override int WriteLength(StreamContext context) {
-        int length = 0;
-        if (context.fullModel) {
-            FlattenCache();
-            length += WriteStream.WriteVarint32Length((uint)PropertyID.Activated, _activated ? 1u : 0u);
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.activatedSet) {
-                length += WriteStream.WriteVarint32Length((uint)PropertyID.Activated, entry.activated ? 1u : 0u);
-            }
-        }
+        var length = 0;
+        length += _activatedProperty.WriteLength(context);
         return length;
     }
     
     protected override void Write(WriteStream stream, StreamContext context) {
-        var didWriteProperties = false;
-        
-        if (context.fullModel) {
-            stream.WriteVarint32((uint)PropertyID.Activated, _activated ? 1u : 0u);
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.activatedSet) {
-                _cache.PushLocalCacheToInflight(context.updateID);
-                ClearCacheOnStreamCallback(context);
-            }
-            if (entry.activatedSet) {
-                stream.WriteVarint32((uint)PropertyID.Activated, entry.activated ? 1u : 0u);
-                didWriteProperties = true;
-            }
-            
-            if (didWriteProperties) InvalidateReliableLength();
-        }
+        var writes = false;
+        writes |= _activatedProperty.Write(stream, context);
+        if (writes) InvalidateContextLength(context);
     }
     
     protected override void Read(ReadStream stream, StreamContext context) {
+        var anyPropertiesChanged = false;
         while (stream.ReadNextPropertyID(out uint propertyID)) {
+            var changed = false;
             switch (propertyID) {
-                case (uint)PropertyID.Activated: {
-                    bool previousValue = _activated;
-                    _activated = (stream.ReadVarint32() != 0);
-                    bool activatedExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.activatedSet);
-                    if (!activatedExistsInChangeCache && _activated != previousValue) {
-                        FireActivatedDidChange(_activated);
-                    }
+                case (uint) PropertyID.Activated: {
+                    changed = _activatedProperty.Read(stream, context);
+                    if (changed) FireActivatedDidChange(activated);
                     break;
                 }
                 default: {
@@ -107,37 +80,16 @@ public partial class CodeSyncModel : RealtimeModel {
                     break;
                 }
             }
+            anyPropertiesChanged |= changed;
+        }
+        if (anyPropertiesChanged) {
+            UpdateBackingFields();
         }
     }
     
-    #region Cache Operations
-    
-    private StreamEventDispatcher _streamEventDispatcher;
-    
-    private void FlattenCache() {
+    private void UpdateBackingFields() {
         _activated = activated;
-        _cache.Clear();
     }
     
-    private void ClearCache(uint updateID) {
-        _cache.RemoveUpdateFromInflight(updateID);
-    }
-    
-    private void ClearCacheOnStreamCallback(StreamContext context) {
-        if (_streamEventDispatcher != context.dispatcher) {
-            UnsubscribeClearCacheCallback(); // unsub from previous dispatcher
-        }
-        _streamEventDispatcher = context.dispatcher;
-        _streamEventDispatcher.AddStreamCallback(context.updateID, ClearCache);
-    }
-    
-    private void UnsubscribeClearCacheCallback() {
-        if (_streamEventDispatcher != null) {
-            _streamEventDispatcher.RemoveStreamCallback(ClearCache);
-            _streamEventDispatcher = null;
-        }
-    }
-    
-    #endregion
 }
 /* ----- End Normal Autogenerated Code ----- */

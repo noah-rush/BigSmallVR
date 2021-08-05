@@ -13,11 +13,11 @@ public partial class MatchSyncModel {
 public partial class MatchSyncModel : RealtimeModel {
     public bool lit {
         get {
-            return _cache.LookForValueInCache(_lit, entry => entry.litSet, entry => entry.lit);
+            return _litProperty.value;
         }
         set {
-            if (this.lit == value) return;
-            _cache.UpdateLocalCache(entry => { entry.litSet = true; entry.lit = value; return entry; });
+            if (_litProperty.value == value) return;
+            _litProperty.value = value;
             InvalidateReliableLength();
             FireLitDidChange(value);
         }
@@ -26,25 +26,22 @@ public partial class MatchSyncModel : RealtimeModel {
     public delegate void PropertyChangedHandler<in T>(MatchSyncModel model, T value);
     public event PropertyChangedHandler<bool> litDidChange;
     
-    private struct LocalCacheEntry {
-        public bool litSet;
-        public bool lit;
-    }
-    
-    private LocalChangeCache<LocalCacheEntry> _cache = new LocalChangeCache<LocalCacheEntry>();
-    
     public enum PropertyID : uint {
         Lit = 1,
     }
     
-    public MatchSyncModel() : this(null) {
-    }
+    #region Properties
     
-    public MatchSyncModel(RealtimeModel parent) : base(null, parent) {
+    private ReliableProperty<bool> _litProperty;
+    
+    #endregion
+    
+    public MatchSyncModel() : base(null) {
+        _litProperty = new ReliableProperty<bool>(1, _lit);
     }
     
     protected override void OnParentReplaced(RealtimeModel previousParent, RealtimeModel currentParent) {
-        UnsubscribeClearCacheCallback();
+        _litProperty.UnsubscribeCallback();
     }
     
     private void FireLitDidChange(bool value) {
@@ -56,49 +53,25 @@ public partial class MatchSyncModel : RealtimeModel {
     }
     
     protected override int WriteLength(StreamContext context) {
-        int length = 0;
-        if (context.fullModel) {
-            FlattenCache();
-            length += WriteStream.WriteVarint32Length((uint)PropertyID.Lit, _lit ? 1u : 0u);
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.litSet) {
-                length += WriteStream.WriteVarint32Length((uint)PropertyID.Lit, entry.lit ? 1u : 0u);
-            }
-        }
+        var length = 0;
+        length += _litProperty.WriteLength(context);
         return length;
     }
     
     protected override void Write(WriteStream stream, StreamContext context) {
-        var didWriteProperties = false;
-        
-        if (context.fullModel) {
-            stream.WriteVarint32((uint)PropertyID.Lit, _lit ? 1u : 0u);
-        } else if (context.reliableChannel) {
-            LocalCacheEntry entry = _cache.localCache;
-            if (entry.litSet) {
-                _cache.PushLocalCacheToInflight(context.updateID);
-                ClearCacheOnStreamCallback(context);
-            }
-            if (entry.litSet) {
-                stream.WriteVarint32((uint)PropertyID.Lit, entry.lit ? 1u : 0u);
-                didWriteProperties = true;
-            }
-            
-            if (didWriteProperties) InvalidateReliableLength();
-        }
+        var writes = false;
+        writes |= _litProperty.Write(stream, context);
+        if (writes) InvalidateContextLength(context);
     }
     
     protected override void Read(ReadStream stream, StreamContext context) {
+        var anyPropertiesChanged = false;
         while (stream.ReadNextPropertyID(out uint propertyID)) {
+            var changed = false;
             switch (propertyID) {
-                case (uint)PropertyID.Lit: {
-                    bool previousValue = _lit;
-                    _lit = (stream.ReadVarint32() != 0);
-                    bool litExistsInChangeCache = _cache.ValueExistsInCache(entry => entry.litSet);
-                    if (!litExistsInChangeCache && _lit != previousValue) {
-                        FireLitDidChange(_lit);
-                    }
+                case (uint) PropertyID.Lit: {
+                    changed = _litProperty.Read(stream, context);
+                    if (changed) FireLitDidChange(lit);
                     break;
                 }
                 default: {
@@ -106,37 +79,16 @@ public partial class MatchSyncModel : RealtimeModel {
                     break;
                 }
             }
+            anyPropertiesChanged |= changed;
+        }
+        if (anyPropertiesChanged) {
+            UpdateBackingFields();
         }
     }
     
-    #region Cache Operations
-    
-    private StreamEventDispatcher _streamEventDispatcher;
-    
-    private void FlattenCache() {
+    private void UpdateBackingFields() {
         _lit = lit;
-        _cache.Clear();
     }
     
-    private void ClearCache(uint updateID) {
-        _cache.RemoveUpdateFromInflight(updateID);
-    }
-    
-    private void ClearCacheOnStreamCallback(StreamContext context) {
-        if (_streamEventDispatcher != context.dispatcher) {
-            UnsubscribeClearCacheCallback(); // unsub from previous dispatcher
-        }
-        _streamEventDispatcher = context.dispatcher;
-        _streamEventDispatcher.AddStreamCallback(context.updateID, ClearCache);
-    }
-    
-    private void UnsubscribeClearCacheCallback() {
-        if (_streamEventDispatcher != null) {
-            _streamEventDispatcher.RemoveStreamCallback(ClearCache);
-            _streamEventDispatcher = null;
-        }
-    }
-    
-    #endregion
 }
 /* ----- End Normal Autogenerated Code ----- */
